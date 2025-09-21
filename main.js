@@ -2,7 +2,7 @@
 const tg = window.TelegramWebApp;
 tg.ready();
 
-fetch('https://broken-meadow-47c5.ivlievd156.workers.dev/validate', {
+fetch('const SERVER_URL = "https://broken-meadow-47c5.ivlievd156.workers.dev";', {
   method: 'POST',
   headers: {'Content-Type': 'application/json'},
   body: JSON.stringify({ initData: tg.initData })
