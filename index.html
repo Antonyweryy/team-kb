@@ -1,71 +1,35 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>База знаний — Оглавление</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<meta charset="UTF-8">
+<title>Мини-приложение</title>
 </head>
 <body>
-  <main id="app">
-    <h1>📚 База знаний команды</h1>
-    <p class="lead">Здесь собраны чеклисты, инструкции и учебные модули — всё в одном месте. Открывай из нашего бота в Telegram, чтобы система автоматически подтянула твой профиль и проверила доступ.</p>
+<h1 id="greeting">Привет!</h1>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script>
+const tg = window.Telegram.WebApp;
 
-    <section id="status">
-      <p>Проверка доступа...</p>
-    </section>
-
-    <nav id="modules" style="display:none;">
-      <ul>
-        <li><a id="m1" href="module1.html">Модуль 1 — Введение и правила</a></li>
-        <li><a id="m2" href="module2.html" class="locked">Модуль 2 — Основы процесса</a></li>
-        <li><a id="m3" href="module3.html" class="locked">Модуль 3 — Практика</a></li>
-        <li><a id="m4" href="module4.html" class="locked">Модуль 4 — Тесты и кейсы</a></li>
-      </ul>
-    </nav>
-
-    <p class="note">Если ты не открывал это через бот — открой бота и нажми кнопку «Открыть базу знаний».</p>
-  </main>
-
-  <script>
-    const API = 'https://YOUR_WORKER_SUBDOMAIN.workers.dev/validate'; // <- поменяешь после деплоя worker
-    const tg = window.Telegram?.WebApp;
-    const statusEl = document.getElementById('status');
-    const modulesEl = document.getElementById('modules');
-
-    async function validate() {
-      if (!tg || !tg.initData) {
-        statusEl.innerHTML = '<b>Открывай мини-апп через бот. Сейчас нет инициализационных данных.</b>';
-        return;
-      }
-      try {
-        const r = await fetch(API, {
-          method: 'POST',
-          headers: {'Content-Type':'application/json'},
-          body: JSON.stringify({initData: tg.initData})
-        });
-        const j = await r.json();
-        if (j.ok && j.allowed) {
-          statusEl.innerHTML = `<b>Доступ подтверждён: ${j.user.first_name || 'User'} (${j.user.id})</b>`;
-          localStorage.setItem('tg_kb_session', JSON.stringify(j)); // кешим
-          // показываем разрешённые модули
-          modulesEl.style.display = 'block';
-          // разблокируем нужные
-          (j.allowedModules || []).forEach(m => {
-            const a = document.getElementById('m'+m);
-            if (a) a.classList.remove('locked');
-          });
-        } else {
-          statusEl.innerHTML = '<b>Доступ запрещён. Свяжись с админом.</b>';
-        }
-      } catch(e){
-        statusEl.innerHTML = '<b>Ошибка связи с сервером. Проверь конфигурацию.</b>';
-        console.error(e);
-      }
+async function init() {
+  try {
+    const res = await fetch("https://broken-meadow-47c5.ivlievd156.workers.dev/validate", {
+      method: "POST",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify({ initData: tg.initData })
+    });
+    const data = await res.json();
+    if(data.ok) {
+      const name = data.user.first_name || "Пользователь";
+      document.getElementById("greeting").textContent = `Привет, ${name}!`;
+    } else {
+      document.getElementById("greeting").textContent = "Ошибка доступа";
     }
+  } catch(e) {
+    document.getElementById("greeting").textContent = "Ошибка связи с сервером";
+  }
+}
 
-    validate();
-  </script>
+init();
+</script>
 </body>
 </html>
