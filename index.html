@@ -497,12 +497,6 @@ async function init() {
   const nameNode = document.createTextNode(name);
   usernameDiv.appendChild(nameNode);
 
-  const line = document.createElement("div");
-  line.style.height = "1px";       // толщина
-  line.style.backgroundColor = "#ccc"; // цвет линии
-  line.style.width = "100%";       // растянуть на всю ширину
-  line.style.marginTop = "8px";    // отступ сверху
-  usernameDiv.appendChild(line);
   }
     } else {
       document.getElementById("username").textContent = "Ошибка доступа";
