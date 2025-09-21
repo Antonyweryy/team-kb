@@ -110,7 +110,12 @@
 </ul>
 
 <div id="M0" class="module" style="display:none">...</div>
-<div id="M1" class="module" style="display:none; padding:16px; font-family:'Telegram WebApp', Helvetica, Arial, sans-serif;">
+<div id="M1" class="module" style="display:none; 
+  position:fixed; top:0; left:0; width:100%; height:100%; 
+  background-color:#fff; color:#111; padding:16px; 
+  overflow-y:auto; z-index:1000; font-family:'Telegram WebApp', Helvetica, Arial, sans-serif;
+  transition: background-color 0.3s, color 0.3s;">
+  
   <button class="back" style="
     background: #0088cc;
     color: #fff;
@@ -140,6 +145,38 @@
 
   <p style="margin-top:16px;">По мере изучения новых терминов их список будет пополняться.</p>
 </div>
+
+<style>
+  /* Убираем подчёркивание для всех ссылок внутри модулей */
+  .module a {
+    color: #0088cc;
+    text-decoration: none;
+  }
+
+  .module a:hover {
+    text-decoration: underline;
+  }
+
+  /* Тёмная тема */
+  @media (prefers-color-scheme: dark) {
+    #M1 {
+      background-color: #1e1e1e;
+      color: #e1e1e1;
+    }
+    #M1 li {
+      background-color: #2a2a2a;
+      border-left-color: #0088cc;
+    }
+    #M1 button.back {
+      background: #0088cc;
+      color: #fff;
+    }
+    #M1 a {
+      color: #00bfff;
+    }
+  }
+</style>
+
 
 <div id="M2" class="module" style="display:none">...</div>
 <div id="M3" class="module" style="display:none">...</div>
