@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Модуль 1 — Введение</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+  <main id="app">
+    <h1>Модуль 1 — Введение</h1>
+
+    <section id="content" style="display:none;">
+      <h2>Цель модуля</h2>
+      <p>Понять структуру базы знаний, кто за что отвечает и какие правила оформления контента. Кратко, жёстко и по делу.</p>
+
+      <h3>План</h3>
+      <ol>
+        <li>Краткие правила оформления статей.</li>
+        <li>Формат: заголовок, проблема, решение, чек-лист.</li>
+        <li>Как добавлять и править — через pull request в репо (или через форму).</li>
+      </ol>
+
+      <h3>Задание</h3>
+      <p>Добавь в репо простую инструкцию «Как настроить рабочее окружение» — 5–7 пунктов. Когда будешь готов — отметь в общем чате.</p>
+    </section>
+
+    <section id="denied" style="display:none;">
+      <p><b>У тебя нет доступа к этому модулю.</b> Открой приложение через бота или попроси доступ у админа.</p>
+    </section>
+
+    <nav>
+      <a href="index.html">⬅️ Назад</a>
+    </nav>
+  </main>
+
+  <script>
+    const API = 'https://YOUR_WORKER_SUBDOMAIN.workers.dev/validate';
+    const tg = window.Telegram?.WebApp;
+
+    async function check() {
+      // проверяем кеш
+      const cached = localStorage.getItem('tg_kb_session');
+      if (cached) {
+        const j = JSON.parse(cached);
+        if (j.ok && (j.allowedModules || []).includes(1)) {
+          document.getElementById('content').style.display = 'block';
+          return;
+        }
+      }
+      // иначе валидируем живьём
+      if (!tg || !tg.initData) {
+        document.getElementById('denied').style.display = 'block';
+        return;
+      }
+      try {
+        const r = await fetch(API, {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({initData: tg.initData})
+        });
+        const j = await r.json();
+        if (j.ok && (j.allowedModules || []).includes(1)) {
+          document.getElementById('content').style.display = 'block';
+          localStorage.setItem('tg_kb_session', JSON.stringify(j));
+        } else {
+          document.getElementById('denied').style.display = 'block';
+        }
+      } catch(e){
+        document.getElementById('denied').style.display = 'block';
+        console.error(e);
+      }
+    }
+
+    check();
+  </script>
+</body>
+</html>
