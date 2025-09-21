@@ -476,7 +476,8 @@ async function init() {
     if(data.ok) {
       const name = data.user.first_name || "Пользователь";
       const photo = data.user.photo_url;
-      
+      const usernameDiv = document.getElementById("username");
+      usernameDiv.textContent = "";
       document.getElementById("username").textContent = name;
       if(photo){
     const img = document.createElement("img");
