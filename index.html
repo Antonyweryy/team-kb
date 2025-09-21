@@ -86,7 +86,7 @@
 </style>
 </head>
 <body>
-  <div id="username">Загрузка...</div>
+  <div id="username" style="display:flex; align-items:center;">Загрузка...</div>
   <p></p>
   <p></p>
   <p></p>
@@ -475,7 +475,19 @@ async function init() {
     const data = await res.json();
     if(data.ok) {
       const name = data.user.first_name || "Пользователь";
+      const photo = data.user.photo_url;
+      
       document.getElementById("username").textContent = name;
+      if(photo){
+    const img = document.createElement("img");
+    img.src = photo;
+    img.alt = name;
+    img.style.width = "48px";
+    img.style.height = "48px";
+    img.style.borderRadius = "50%";
+    img.style.marginRight = "8px";
+    usernameDiv.appendChild(img);
+  }
     } else {
       document.getElementById("username").textContent = "Ошибка доступа";
     }
