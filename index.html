@@ -67,11 +67,29 @@
     .module-list li {
       background-color: #2a2a2a;
     }
+    .module-list a {
+  color: #0088cc; /* телеграм-синий, можно менять */
+  text-decoration: none; /* убираем подчёркивание */
+  display: block; /* чтобы весь блок был кликабельным */
+  padding: 8px 0;
+  font-weight: 500;
+  border-bottom: 1px solid #e6e6e6; /* разделители */
+  transition: background 0.2s;
+}
+
+.module-list a:hover {
+  background: rgba(0, 136, 204, 0.1); /* подсветка при наведении */
+  border-radius: 6px;
+}
+
   }
 </style>
 </head>
 <body>
   <div id="username">Загрузка...</div>
+  <p></p>
+  <p></p>
+  <p></p>
   <h1>База Ассистента</h1>
   <p>👋 Привет, дорогой ассистент! Добро пожаловать в нашу базу знаний.</p>
   <p>Здесь ты найдёшь ответы на все вопросы по рабочей части, сюда можно обращаться в любой момент. Вся информация здесь собрана и структурирована таким образом, чтобы ты мог(-ла) адаптироваться к новой для тебя деятельности максимально быстро и в короткий срок)</p>
@@ -84,12 +102,24 @@
     Информация об открытии новых модулей будет в личной странице.
   </p>
   <ul class="module-list">
-  <li><a href="https://antonyweryy.github.io/team-kb/module0.html" target="_blank">M0. Роль ассистента и начало работы</a></li>
-  <li><a href="https://antonyweryy.github.io/team-kb/module1.html" target="_blank">M1. Термины и их значение</a></li>
+  <li><a href="#" data-module="M0">M0. Роль ассистента</a></li>
+  <li><a href="#" data-module="M1">M1. Термины</a></li>
   <li><a href="https://antonyweryy.github.io/team-kb/module2.html" target="_blank">M2. Где искать клиентов в Инстаграм</a></li>
   <li><a href="https://antonyweryy.github.io/team-kb/module3.html" target="_blank">M3. Анализ аккаунта</a></li>
   <li><a href="https://antonyweryy.github.io/team-kb/module4.html" target="_blank">M4. Всё о рассылках (без персональных)</a></li>
   </ul>
+
+  <div id="M0" class="module" style="display:none;">
+  <button class="back">← Назад</button>
+  <h2>M0. Роль ассистента и начало работы</h2>
+  <p>Содержимое М0...</p>
+</div>
+
+<div id="M1" class="module" style="display:none;">
+  <button class="back">← Назад</button>
+  <h2>M1. Термины и их значение</h2>
+  <p>Содержимое М1...</p>
+</div>
 
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script>
@@ -112,6 +142,22 @@ async function init() {
   } catch(e) {
     document.getElementById("username").textContent = "Ошибка связи с сервером";
   }
+  document.querySelectorAll('.module-list a').forEach(a=>{
+  a.addEventListener('click', e=>{
+    e.preventDefault();
+    const moduleId = a.dataset.module;
+    document.getElementById('home').style.display = 'none';
+    document.querySelectorAll('.module').forEach(m=>m.style.display='none');
+    document.getElementById(moduleId).style.display = 'block';
+  });
+});
+
+document.querySelectorAll('.back').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.getElementById('home').style.display = 'block';
+    document.querySelectorAll('.module').forEach(m=>m.style.display='none');
+  });
+});
 }
 
 init();
