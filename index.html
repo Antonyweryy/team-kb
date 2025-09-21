@@ -2,10 +2,93 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>Мини-приложение</title>
+<title>База Ассистента</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  /* Сброс стилей */
+  body, h1, h2, p, ul, li {
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: 'Telegram WebApp', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    background-color: #fff;
+    color: #111;
+    padding: 16px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  /* Тёмная тема */
+  @media (prefers-color-scheme: dark) {
+    body {
+      background-color: #1e1e1e;
+      color: #e1e1e1;
+    }
+    h1, h2 {
+      color: #fff;
+    }
+    .module-list li {
+      border-color: #444;
+    }
+  }
+
+  h1 {
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+
+  #username {
+    font-size: 18px;
+    margin-bottom: 12px;
+    font-weight: bold;
+    color: #0088cc;
+  }
+
+  p {
+    margin-bottom: 16px;
+  }
+
+  .module-list {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .module-list li {
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    background-color: #f2f3f5;
+    border-left: 4px solid #0088cc;
+    border-radius: 6px;
+    transition: background-color 0.3s;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .module-list li {
+      background-color: #2a2a2a;
+    }
+  }
+</style>
 </head>
 <body>
-<h1 id="greeting">Привет!</h1>
+  <div id="username">Загрузка...</div>
+  <h1>База Ассистента</h1>
+  <p>
+    Вся информация для наилучшей структурированности поделена на блоки (M0 → M1 → M2 и т.д.). 
+    Доступ к ним выдаётся поэтапно, по мере появления новых обязанностей и полного освоения текущего уровня.
+  </p>
+  <p>
+    В этом разделе указаны ссылки только на первые модули, необходимые для начального обучения. 
+    Информация об открытии новых модулей будет в личной странице.
+  </p>
+  <ul class="module-list">
+    <li>M0. Роль ассистента и начало работы</li>
+    <li>M1. Термины и их значение</li>
+    <li>M2. Где искать клиентов в Инстаграм</li>
+    <li>M3. Анализ аккаунта</li>
+    <li>M4. Всё о рассылках (без персональных)</li>
+  </ul>
+
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script>
 const tg = window.Telegram.WebApp;
@@ -20,12 +103,12 @@ async function init() {
     const data = await res.json();
     if(data.ok) {
       const name = data.user.first_name || "Пользователь";
-      document.getElementById("greeting").textContent = `Привет, ${name}!`;
+      document.getElementById("username").textContent = name;
     } else {
-      document.getElementById("greeting").textContent = "Ошибка доступа";
+      document.getElementById("username").textContent = "Ошибка доступа";
     }
   } catch(e) {
-    document.getElementById("greeting").textContent = "Ошибка связи с сервером";
+    document.getElementById("username").textContent = "Ошибка связи с сервером";
   }
 }
 
