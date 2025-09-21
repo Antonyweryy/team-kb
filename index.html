@@ -481,7 +481,7 @@ async function init() {
 
   usernameDiv.style.display = "flex"; 
   usernameDiv.style.alignItems = "center";
-      document.getElementById("username").textContent = name;
+      
       if(photo){
     const img = document.createElement("img");
     img.src = photo;
@@ -493,6 +493,9 @@ async function init() {
     img.style.marginRight = "18px";
   
     usernameDiv.appendChild(img);
+
+  const nameNode = document.createTextNode(name);
+  usernameDiv.appendChild(nameNode);
 
   const line = document.createElement("div");
   line.style.height = "1px";       // толщина
