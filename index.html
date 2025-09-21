@@ -104,22 +104,47 @@
   <ul class="module-list">
   <li><a href="#" data-module="M0">M0. Роль ассистента</a></li>
   <li><a href="#" data-module="M1">M1. Термины</a></li>
-  <li><a href="https://antonyweryy.github.io/team-kb/module2.html" target="_blank">M2. Где искать клиентов в Инстаграм</a></li>
-  <li><a href="https://antonyweryy.github.io/team-kb/module3.html" target="_blank">M3. Анализ аккаунта</a></li>
-  <li><a href="https://antonyweryy.github.io/team-kb/module4.html" target="_blank">M4. Всё о рассылках (без персональных)</a></li>
+  <li><a href="#" data-module="M2">M2. Где искать клиентов в Инстаграм</a></li>
+  <li><a href="#" data-module="M3">M3. Анализ аккаунта</a></li>
+  <li><a href="#" data-module="M4">M4. Всё о рассылках (без персональных)</a></li>
+</ul>
+
+<div id="M0" class="module" style="display:none">...</div>
+<div id="M1" class="module" style="display:none; padding:16px; font-family:'Telegram WebApp', Helvetica, Arial, sans-serif;">
+  <button class="back" style="
+    background: #0088cc;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-bottom: 16px;
+  ">← Назад</button>
+
+  <h2 style="font-size:22px; margin-bottom:12px;">M1. Термины и их значение</h2>
+
+  <p style="margin-bottom:12px;">В этом модуле ты познакомишься с основными терминами и понятиями, которые пригодятся в работе ассистента.</p>
+
+  <ul style="list-style:none; padding-left:0;">
+    <li style="padding:8px 12px; margin-bottom:8px; background:#f2f3f5; border-left:4px solid #0088cc; border-radius:6px;">
+      <strong>Термин 1:</strong> Краткое описание термина.
+    </li>
+    <li style="padding:8px 12px; margin-bottom:8px; background:#f2f3f5; border-left:4px solid #0088cc; border-radius:6px;">
+      <strong>Термин 2:</strong> Краткое описание термина.
+    </li>
+    <li style="padding:8px 12px; margin-bottom:8px; background:#f2f3f5; border-left:4px solid #0088cc; border-radius:6px;">
+      <strong>Термин 3:</strong> Краткое описание термина.
+    </li>
   </ul>
 
-  <div id="M0" class="module" style="display:none;">
-  <button class="back">← Назад</button>
-  <h2>M0. Роль ассистента и начало работы</h2>
-  <p>Содержимое М0...</p>
+  <p style="margin-top:16px;">По мере изучения новых терминов их список будет пополняться.</p>
 </div>
 
-<div id="M1" class="module" style="display:none;">
-  <button class="back">← Назад</button>
-  <h2>M1. Термины и их значение</h2>
-  <p>Содержимое М1...</p>
-</div>
+<div id="M2" class="module" style="display:none">...</div>
+<div id="M3" class="module" style="display:none">...</div>
+<div id="M4" class="module" style="display:none">...</div>
+
 
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script>
@@ -146,18 +171,17 @@ async function init() {
   a.addEventListener('click', e=>{
     e.preventDefault();
     const moduleId = a.dataset.module;
-    document.getElementById('home').style.display = 'none';
     document.querySelectorAll('.module').forEach(m=>m.style.display='none');
-    document.getElementById(moduleId).style.display = 'block';
+    document.getElementById(moduleId).style.display='block';
   });
 });
 
 document.querySelectorAll('.back').forEach(btn=>{
   btn.addEventListener('click', ()=>{
-    document.getElementById('home').style.display = 'block';
     document.querySelectorAll('.module').forEach(m=>m.style.display='none');
   });
 });
+
 }
 
 init();
