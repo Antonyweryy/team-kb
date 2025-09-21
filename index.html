@@ -483,10 +483,13 @@ async function init() {
     const img = document.createElement("img");
     img.src = photo;
     img.alt = name;
-    img.style.width = "38px";
-    img.style.height = "38px";
+    img.style.width = "32px";
+    img.style.height = "32px";
+    img.style.objectFit = "cover"; 
     img.style.borderRadius = "50%";
     img.style.marginRight = "18px";
+         usernameDiv.style.display = "flex"; // флекс для выравнивания
+    usernameDiv.style.alignItems = "center";
     usernameDiv.appendChild(img);
   }
     } else {
