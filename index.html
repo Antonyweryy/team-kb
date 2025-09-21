@@ -433,24 +433,31 @@
 <!-- Добавь этот стиль внизу страницы (или в общий CSS) -->
 <style>
   /* Цитата - красивая плашка с маркером */
-  #M4 .quote{
-    background: linear-gradient(90deg, rgba(234,246,255,0.6), rgba(248,252,255,0.9));
-    border-left: 4px solid #0088cc;
+  #M4 .quote {
+    background: linear-gradient(90deg, rgba(255, 255, 150, 0.6), rgba(255, 255, 180, 0.9)); /* светло-жёлтый градиент */
+    border-left: 4px solid #FFD700; /* золотисто-жёлтая линия */
     padding: 10px 12px;
     border-radius: 8px;
     margin: 8px 0 12px 0;
     box-shadow: 0 6px 18px rgba(0,0,0,0.04);
     position: relative;
-  }
-  #M4 .quote:before{
+}
+
+#M4 .quote:before {
     content: "❝";
     position: absolute;
     left: 10px;
     top: 6px;
     font-size: 28px;
-    color: rgba(0,136,204,0.15);
-  }
-  #M4 .quote p{ margin:0; font-style:italic; color: #083b50; padding-left:18px; }
+    color: rgba(255, 215, 0, 0.5); /* полупрозрачный жёлтый */
+}
+
+#M4 .quote p {
+    margin: 0;
+    font-style: italic;
+    color: #8B8000; /* тёмно-жёлтый текст для читаемости */
+    padding-left: 18px;
+}
 
   /* Заголовки чуть крупнее и выразительнее */
   #M4 h2{ font-size:24px; }
