@@ -477,7 +477,10 @@ async function init() {
       const name = data.user.first_name || "Пользователь";
       const photo = data.user.photo_url;
       const usernameDiv = document.getElementById("username");
-      usernameDiv.textContent = "";
+      usernameDiv.textContent = ""; // очищаем всё
+
+  usernameDiv.style.display = "flex"; 
+  usernameDiv.style.alignItems = "center";
       document.getElementById("username").textContent = name;
       if(photo){
     const img = document.createElement("img");
@@ -488,9 +491,15 @@ async function init() {
     img.style.objectFit = "cover"; 
     img.style.borderRadius = "50%";
     img.style.marginRight = "18px";
-         usernameDiv.style.display = "flex"; // флекс для выравнивания
-    usernameDiv.style.alignItems = "center";
+  
     usernameDiv.appendChild(img);
+
+  const line = document.createElement("div");
+  line.style.height = "1px";       // толщина
+  line.style.backgroundColor = "#ccc"; // цвет линии
+  line.style.width = "100%";       // растянуть на всю ширину
+  line.style.marginTop = "8px";    // отступ сверху
+  usernameDiv.appendChild(line);
   }
     } else {
       document.getElementById("username").textContent = "Ошибка доступа";
