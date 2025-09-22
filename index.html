@@ -493,6 +493,29 @@ async function init() {
       body: JSON.stringify({ initData: tg.initData })
     });
     const data = await res.json();
+if (!data.ok || !data.allowed) {
+      // Создаём fullscreen заглушку
+      document.body.innerHTML = `
+        <div style="
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          width:100vw;
+          height:100vh;
+          background-color:#111;
+          color:#fff;
+          font-size:24px;
+          font-family:Arial, sans-serif;
+          text-align:center;
+          padding:20px;
+          box-sizing:border-box;
+        ">
+          🚫 Доступ запрещён<br>Обратитесь к администратору
+        </div>
+      `;
+      return; // дальше код не выполняется
+    }
+    
     if(data.ok) {
       const name = data.user.first_name || "Пользователь";
       const photo = data.user.photo_url;
