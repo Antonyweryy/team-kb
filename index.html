@@ -487,36 +487,51 @@ const tg = window.Telegram.WebApp;
 
 async function init() {
   try {
+    console.log("Отправка запроса на сервер проверки доступа...");
     const res = await fetch("https://broken-meadow-47c5.ivlievd156.workers.dev/validate", {
       method: "POST",
       headers: {"Content-Type":"application/json"},
       body: JSON.stringify({ initData: tg.initData })
     });
     const data = await res.json();
+    console.log("Ответ сервера:", data);
 if (!data.ok || !data.allowed) {
+  console.log("Доступ запрещён для пользователя:", data.user?.id);
       // Создаём fullscreen заглушку
       document.body.innerHTML = `
         <div style="
-          display:flex;
-          justify-content:center;
-          align-items:center;
-          width:100vw;
-          height:100vh;
-          background-color:#111;
-          color:#fff;
-          font-size:24px;
-          font-family:Arial, sans-serif;
-          text-align:center;
-          padding:20px;
-          box-sizing:border-box;
-        ">
-          🚫 Доступ запрещён<br>Обратитесь к администратору
-        </div>
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      width:100vw;
+      height:100vh;
+      background: linear-gradient(135deg,#2c3e50,#4ca1af);
+      color:#fff;
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align:center;
+      padding:20px;
+      box-sizing:border-box;
+    ">
+      <div style="font-size:64px; margin-bottom:20px;">🚫</div>
+      <div style="font-size:28px; font-weight:bold; margin-bottom:10px;">Доступ запрещён</div>
+      <div style="font-size:18px; margin-bottom:30px;">Обратитесь к администратору</div>
+      <a href="mailto:admin@example.com" style="
+        padding:12px 24px;
+        background:#fff;
+        color:#2c3e50;
+        border-radius:8px;
+        text-decoration:none;
+        font-weight:bold;
+        transition:0.3s;
+      " onmouseover="this.style.background='#f1f1f1'" onmouseout="this.style.background='#fff'">Связаться с админом</a>
+    </div>
       `;
       return; // дальше код не выполняется
     }
     
     if(data.ok) {
+      console.log("Доступ разрешён:", data.user.first_name);
       const name = data.user.first_name || "Пользователь";
       const photo = data.user.photo_url;
       const usernameDiv = document.getElementById("username");
