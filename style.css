@@ -12,22 +12,24 @@ body {
 
 /* ==== Верхняя панель ==== */
 #topbar {
-  position: sticky; /* всегда сверху */
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
   background: linear-gradient(90deg, #0088cc, #29a9e0);
   color: #fff;
-  padding: 12px 16px;
+  padding: 12px 16px;       /* сверху/снизу 12px, слева/справа 16px */
   display: flex;
   align-items: center;
   gap: 12px;
-   max-width: 96vw; /* чтобы не вылезала за экран */
-  overflow: hidden;
+  box-sizing: border-box;   /* чтобы padding учитывался внутри width */
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   z-index: 1100;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  overflow: hidden;
+  /* max-width: 96vw; */    /* можно убрать, чтобы не резало справа */
 }
+
 
 #topbar img {
   width: 36px;
