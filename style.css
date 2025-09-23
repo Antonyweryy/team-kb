@@ -1,9 +1,5 @@
-
 /* Сброс */
-body, h1, h2, p, ul, li {
-  margin: 0;
-  padding: 0;
-}
+body, h1, h2, p, ul, li { margin: 0; padding: 0; }
 
 body {
   font-family: 'Telegram WebApp', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -16,123 +12,50 @@ body {
 
 /* Тёмная тема */
 @media (prefers-color-scheme: dark) {
-  body {
-    background-color: #1e1e1e;
-    color: #e1e1e1;
-  }
+  body { background-color: #1e1e1e; color: #e1e1e1; }
   h1, h2 { color: #fff; }
-  .module-list li { border-color: #444; }
 }
 
-h1 {
-  font-size: 28px;
-  margin-bottom: 8px;
-}
+/* Заголовки */
+h1 { font-size: 28px; margin-bottom: 8px; }
 
-.username {
-  font-size: 18px;
-  margin-bottom: 12px;
-  font-weight: bold;
-  color: #0088cc;
-  display: flex;
-  align-items: center;
-}
-
-.module-list {
-  list-style: none;
-  padding-left: 0;
-}
-
+/* Список модулей */
+.module-list { list-style: none; padding-left: 0; }
 .module-list li {
-  padding: 10px 12px;
-  margin-bottom: 8px;
-  background-color: #f2f3f5;
-  border-left: 4px solid #0088cc;
+  padding: 10px 12px; margin-bottom: 8px;
+  background-color: #f2f3f5; border-left: 4px solid #0088cc;
   border-radius: 6px;
-  transition: background-color 0.3s;
 }
-
 .module-list a {
-  color: #0088cc;
-  text-decoration: none;
-  display: block;
-  padding: 8px 0;
+  color: #0088cc; text-decoration: none; display: block; padding: 8px 0;
   font-weight: 500;
-  border-bottom: 1px solid #e6e6e6;
-  transition: background 0.2s;
 }
-.module-list a:hover {
-  background: rgba(0, 136, 204, 0.1);
-  border-radius: 6px;
-}
+.module-list a:hover { background: rgba(0,136,204,0.08); }
 
-/* Общие стили модулей */
-.module {
-  display: none;
-}
-.hidden { display: none; }
+/* Модули — по умолчанию скрыты через CSS */
+.module { display: none; }
 
-.fullscreen {
+/* Когда активен — полный экран, прокрутка внутри модуля */
+.module.active {
+  display: block;
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background-color: #fff;
-  color: #111;
-  padding: 16px;
-  overflow-y: auto;
-  z-index: 1000;
-  font-family: 'Telegram WebApp', Helvetica, Arial, sans-serif;
-  box-sizing: border-box;
+  background-color: #fff; color: #111;
+  padding: 20px; overflow-y: auto; z-index: 1000; box-sizing: border-box;
 }
 
+/* Отключаем прокрутку фона при открытом модуле */
+body.no-scroll { overflow: hidden; }
+
+/* Кнопка назад */
 .back {
-  background: #0088cc;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  padding: 6px 12px;
-  font-size: 14px;
-  cursor: pointer;
-  margin-bottom: 16px;
-}
-
-/* Стили списка терминов */
-.term-list {
-  list-style: none;
-  padding-left: 0;
-}
-.term-list li {
-  padding: 8px 12px;
-  margin-bottom: 8px;
-  background: #f2f3f5;
-  border-left: 4px solid #0088cc;
-  border-radius: 6px;
-}
-
-/* Цитата */
-.quote {
-  background: linear-gradient(90deg, rgba(234,246,255,0.6), rgba(248,252,255,0.9));
-  border-left: 4px solid #0088cc;
-  padding: 10px 12px;
-  border-radius: 8px;
-  margin: 8px 0 12px 0;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  background: #0088cc; color: #fff; border: none; border-radius: 6px;
+  padding: 6px 12px; font-size: 14px; cursor: pointer; margin-bottom: 16px;
 }
 
 /* Тёмная тема для модулей */
 @media (prefers-color-scheme: dark) {
-  .fullscreen {
-    background-color: #1e1e1e;
-    color: #e1e1e1;
-  }
-  .term-list li {
-    background-color: #2a2a2a;
-    border-left-color: #0088cc;
-  }
-  .back {
-    background: #0088cc;
-    color: #fff;
-  }
-  .module a { color: #00bfff; }
+  .module.active { background-color: #1e1e1e; color: #e1e1e1; }
+  .module-list li { border-color: #444; background-color: #222; color: #fff; }
 }
-
