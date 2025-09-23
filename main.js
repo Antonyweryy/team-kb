@@ -1,75 +1,79 @@
 // main.js
 
-// Безопасный доступ к Telegram WebApp — если его нет, не падать
 const tg = (window.Telegram && window.Telegram.WebApp) ? window.Telegram.WebApp : null;
 
-async function initTelegram() {
+async function checkAccess() {
+  // Получаем div для имени
+  const usernameDiv = document.getElementById("username");
+
+  // Функция для показа заглушки
+  const showAccessDenied = () => {
+    document.body.innerHTML = `
+      <div class="access-denied">
+        <div class="icon">🚫</div>
+        <div class="title">Доступ запрещён</div>
+        <div class="subtitle">Обратитесь к администратору</div>
+        <a href="mailto:admin@example.com" class="btn">Связаться с админом</a>
+      </div>
+    `;
+  };
+
+  // Если Telegram нет — сразу заглушка
   if (!tg) {
-    console.log("Telegram WebApp не обнаружен — пропускаю валидацию.");
-    // Покажи гостя, чтобы не было пустоты
-    const usernameDiv = document.getElementById("username");
-    if (usernameDiv) usernameDiv.textContent = "Гость";
-    return;
+    showAccessDenied();
+    return false;
   }
 
   try {
-    // Если SDK доступен — вызови ready и сделай запрос на сервер
-    try { tg.ready(); } catch(e){ /* silently */ }
+    tg.ready?.();
 
     const res = await fetch("https://broken-meadow-47c5.ivlievd156.workers.dev/validate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ initData: tg.initData })
     });
+
     const data = await res.json();
 
-    if (!data.ok || data.allowed === false) {
-      console.log("Доступ запрещён для пользователя:", data.user?.id);
-      document.body.innerHTML = `
-        <div class="access-denied">
-          <div class="icon">🚫</div>
-          <div class="title">Доступ запрещён</div>
-          <div class="subtitle">Обратитесь к администратору</div>
-          <a href="mailto:admin@example.com" class="btn">Связаться с админом</a>
-        </div>
-      `;
-      return; // дальше код не выполняется
+    // Любая ошибка или отсутствующий id → заглушка
+    if (!data?.ok || !data?.user?.id || data.allowed === false) {
+      showAccessDenied();
+      return false;
     }
 
-    if (data && data.ok && data.user) {
-      const name = data.user.first_name || "Пользователь";
-      const photo = data.user.photo_url;
-      const usernameDiv = document.getElementById("username");
-      usernameDiv.textContent = "";
-      usernameDiv.style.display = "flex";
-      usernameDiv.style.alignItems = "center";
-      usernameDiv.style.gap = "12px";
-      if (photo) {
-        const img = document.createElement("img");
-        img.src = photo;
-        img.alt = name;
-        img.style.width = "32px";
-        img.style.height = "32px";
-        img.style.objectFit = "cover";
-        img.style.borderRadius = "50%";
-        img.style.marginRight = "12px";
-        usernameDiv.appendChild(img);
-      }
-      usernameDiv.appendChild(document.createTextNode(name));
-    } else {
-      document.getElementById("username").textContent = "Ошибка доступа";
+    // Если всё ок — отображаем имя и фото
+    const name = data.user.first_name || "Пользователь";
+    const photo = data.user.photo_url;
+    usernameDiv.textContent = "";
+    usernameDiv.style.display = "flex";
+    usernameDiv.style.alignItems = "center";
+    usernameDiv.style.gap = "12px";
+
+    if (photo) {
+      const img = document.createElement("img");
+      img.src = photo;
+      img.alt = name;
+      img.style.width = "32px";
+      img.style.height = "32px";
+      img.style.objectFit = "cover";
+      img.style.borderRadius = "50%";
+      img.style.marginRight = "12px";
+      usernameDiv.appendChild(img);
     }
+    usernameDiv.appendChild(document.createTextNode(name));
+
+    return true;
+
   } catch (e) {
-    console.error("Ошибка в initTelegram:", e);
-    document.getElementById("username").textContent = "Ошибка связи с сервером";
+    console.error("Ошибка при проверке доступа:", e);
+    showAccessDenied();
+    return false;
   }
 }
 
 // UI: навесим обработчики модулей
 function attachListeners() {
   const modules = Array.from(document.querySelectorAll('.module'));
-
-  // Убедимся, что не оставлено inline display:none, чтобы CSS мог работать
   modules.forEach(m => m.style.removeProperty('display'));
 
   document.querySelectorAll('.module-list a').forEach(a => {
@@ -80,14 +84,12 @@ function attachListeners() {
       modules.forEach(m => m.classList.remove('active'));
       const modal = document.getElementById(id);
       if (!modal) return;
-      // убираем возможный inline display и показываем через класс
       modal.style.removeProperty('display');
       modal.classList.add('active');
       document.body.classList.add('no-scroll');
     });
   });
 
-  // Назад
   document.addEventListener('click', e => {
     if (e.target.closest('.back')) {
       modules.forEach(m => m.classList.remove('active'));
@@ -95,7 +97,6 @@ function attachListeners() {
     }
   });
 
-  // Esc чтобы закрыть
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
       modules.forEach(m => m.classList.remove('active'));
@@ -104,8 +105,11 @@ function attachListeners() {
   });
 }
 
-// Когда DOM готов — навесим обработчики и запустим телеграм-инициализацию
-document.addEventListener('DOMContentLoaded', () => {
-  attachListeners();
-  initTelegram();
+// Запуск после DOM
+document.addEventListener('DOMContentLoaded', async () => {
+  const allowed = await checkAccess();
+  if (allowed) {
+    attachListeners();
+  }
+  // если allowed=false — страница уже заменена на заглушку
 });
