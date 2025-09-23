@@ -23,6 +23,19 @@ async function initTelegram() {
     });
     const data = await res.json();
 
+    if (!data.ok || data.allowed === false) {
+      console.log("Доступ запрещён для пользователя:", data.user?.id);
+      document.body.innerHTML = `
+        <div class="access-denied">
+          <div class="icon">🚫</div>
+          <div class="title">Доступ запрещён</div>
+          <div class="subtitle">Обратитесь к администратору</div>
+          <a href="mailto:admin@example.com" class="btn">Связаться с админом</a>
+        </div>
+      `;
+      return; // дальше код не выполняется
+    }
+
     if (data && data.ok && data.user) {
       const name = data.user.first_name || "Пользователь";
       const photo = data.user.photo_url;
