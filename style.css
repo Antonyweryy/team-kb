@@ -22,7 +22,7 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
-   max-width: 100vw; /* чтобы не вылезала за экран */
+   max-width: 96vw; /* чтобы не вылезала за экран */
   overflow: hidden;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   z-index: 1100;
@@ -67,17 +67,49 @@ body.no-scroll #topbar {
 h1 { font-size: 28px; margin-bottom: 8px; }
 
 /* Список модулей */
-.module-list { list-style: none; padding-left: 0; }
+.module-list {
+  list-style: none;      /* убираем стандартные буллеты */
+  padding: 0;            /* сброс padding */
+  margin: 16px 0;        /* отступ сверху и снизу */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;              /* расстояние между элементами */
+}
+
 .module-list li {
-  padding: 10px 12px; margin-bottom: 8px;
-  background-color: #f2f3f5; border-left: 4px solid #0088cc;
-  border-radius: 6px;
+  padding:8px 12px; 
+  margin-bottom:8px; 
+  background:#f2f3f5; 
+  border-left:4px solid #0088cc; 
+  border-radius:6px;
 }
-.module-list a {
-  color: #0088cc; text-decoration: none; display: block; padding: 8px 0;
+
+.module-list li a {
+  display: block;
+  padding: 2px 6px;    /* внутренний отступ */
+  color: #0088cc;
   font-weight: 500;
+  text-decoration: none;
 }
-.module-list a:hover { background: rgba(0,136,204,0.08); }
+
+.module-list li a:hover {
+  background: rgba(0, 136, 204, 0.08);
+  border-radius: 8px;
+}
+
+/* Тёмная тема */
+@media (prefers-color-scheme: dark) {
+  .module-list li {
+    background-color: #222;
+    border-color: #444;
+  }
+  .module-list li a {
+    color: #fff;
+  }
+  .module-list li a:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+}
 
 /* Модули — по умолчанию скрыты через CSS */
 .module { display: none; }
@@ -148,4 +180,34 @@ body.no-scroll { overflow: hidden; }
 }
 .access-denied .btn:hover {
   background: #f1f1f1;
+}
+/* Синяя рамка для важного блока */
+.important {
+  background-color: #eaf6ff;        /* светло-голубой фон */
+  border: 1px solid #0088cc;        /* насыщенный синий бордер */
+  border-radius: 8px;               /* скругление углов */
+  padding: 12px 16px;               /* внутренние отступы */
+  margin: 12px 0;                   /* внешние отступы сверху/снизу */
+  color: #005f8a;                   /* темно-синий текст */
+  font-weight: 500;                  /* чуть жирнее обычного текста */
+  line-height: 1.5;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08); /* лёгкая тень для объёма */
+}
+
+/* Цитаты */
+.quote {
+  border-left: 3px solid #cc8500;   /* синий слева */
+  padding-left: 12px;               /* отступ от бордера */
+  margin: 10px 0 12px 0;            /* внешние отступы */
+  font-style: italic;               /* курсив */
+  color: #2c3e50;                   /* тёмно-синий текст */
+  background-color: #fffbf0;        /* очень светлый голубой фон */
+  border-radius: 4px;               /* лёгкое скругление */
+  padding: 10px 14px;               /* внутренние отступы */
+}
+
+/* Можно добавить маленький эффект при наведении для интерактивности */
+.important:hover, .quote:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: all 0.2s ease;
 }
