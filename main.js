@@ -30,6 +30,7 @@ async function initTelegram() {
       usernameDiv.textContent = "";
       usernameDiv.style.display = "flex";
       usernameDiv.style.alignItems = "center";
+      usernameDiv.style.gap = "12px";
       if (photo) {
         const img = document.createElement("img");
         img.src = photo;
