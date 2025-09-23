@@ -22,6 +22,8 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
+   max-width: 100vw; /* чтобы не вылезала за экран */
+  overflow: hidden;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   z-index: 1100;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
@@ -40,6 +42,10 @@ body {
   font-weight: 600;
   color: #fff;
 }
+body.no-scroll #topbar {
+  display: none; /* прячем шапку при открытом модуле */
+}
+
 
 /* Тёмная тема */
 @media (prefers-color-scheme: dark) {
@@ -83,7 +89,7 @@ h1 { font-size: 28px; margin-bottom: 8px; }
   top: 0; left: 0;
   width: 100%; height: 100%;
   background-color: #fff; color: #111;
-  padding: 20px; overflow-y: auto; z-index: 1000; box-sizing: border-box;
+  padding: 20px; overflow-y: auto; z-index: 1300; box-sizing: border-box;
 }
 
 /* Отключаем прокрутку фона при открытом модуле */
@@ -99,4 +105,47 @@ body.no-scroll { overflow: hidden; }
 @media (prefers-color-scheme: dark) {
   .module.active { background-color: #1e1e1e; color: #e1e1e1; }
   .module-list li { border-color: #444; background-color: #222; color: #fff; }
+}
+.access-denied {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #2c3e50, #4ca1af);
+  color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.access-denied .icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+}
+
+.access-denied .title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.access-denied .subtitle {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.access-denied .btn {
+  padding: 12px 24px;
+  background: #fff;
+  color: #2c3e50;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.access-denied .btn:hover {
+  background: #f1f1f1;
 }
