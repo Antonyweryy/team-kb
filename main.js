@@ -41,6 +41,10 @@ async function checkAccess() {
       return false;
     }
 
+    // Всё ок — скрываем спиннер и показываем контент
+document.getElementById("loader").style.display = "none";
+document.getElementById("main-content").style.display = "block";
+
     // Если всё ок — отображаем имя и фото
     const name = data.user.first_name || "Пользователь";
     const photo = data.user.photo_url;
