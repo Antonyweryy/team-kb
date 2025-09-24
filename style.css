@@ -12,7 +12,13 @@ body {
 #main-content {
   display: none; /* Скрываем весь контент до проверки доступа */
 }
-
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 16px auto;
+  border-radius: 8px;
+}
 #loader {
   display:flex;
   flex-direction:column;
