@@ -42,8 +42,12 @@ async function checkAccess() {
     }
 
     // Всё ок — скрываем спиннер и показываем контент
-document.getElementById("loader").style.display = "none";
-document.getElementById("main-content").style.display = "block";
+// После проверки доступа, прямо перед return true:
+const loader = document.getElementById("loader");
+const main = document.getElementById("main-content");
+if (loader) loader.style.display = "none";
+if (main) main.style.display = "block";
+
 
     // Если всё ок — отображаем имя и фото
     const name = data.user.first_name || "Пользователь";
@@ -76,9 +80,9 @@ document.getElementById("main-content").style.display = "block";
 }
 
 // UI: навесим обработчики модулей
+// UI: навесим обработчики модулей
 function attachListeners() {
   const modules = Array.from(document.querySelectorAll('.module'));
-  modules.forEach(m => m.style.removeProperty('display'));
 
   document.querySelectorAll('.module-list a').forEach(a => {
     a.addEventListener('click', e => {
@@ -111,9 +115,15 @@ function attachListeners() {
 
 // Запуск после DOM
 document.addEventListener('DOMContentLoaded', async () => {
-  const allowed = await checkAccess();
+  const allowed = await checkAccess(); // ждем проверки доступа
   if (allowed) {
     attachListeners();
+    // скрываем спиннер и показываем основной контент
+    const loader = document.getElementById("loader");
+    const main = document.getElementById("main-content");
+    if (loader) loader.style.display = "none";
+    if (main) main.style.display = "block";
   }
   // если allowed=false — страница уже заменена на заглушку
 });
+
