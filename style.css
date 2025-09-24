@@ -99,7 +99,7 @@ h1 { font-size: 28px; margin-bottom: 8px; }
   margin: 16px 0;        /* отступ сверху и снизу */
   display: flex;
   flex-direction: column;
-  gap: 8px;              /* расстояние между элементами */
+  gap: 3px;              /* расстояние между элементами */
 }
 
 .module-list li {
