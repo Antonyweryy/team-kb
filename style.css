@@ -148,6 +148,25 @@ h1 { font-size: 28px; margin-bottom: 8px; }
   color: #cc0000; /* текст красный */
 }
 
+.module-list li.pro-pr {
+  border-left-color: #ff8c00; /* насыщенный оранжевый */
+  background-color: #fff4e5;  /* светлый оранжевый фон */
+}
+
+.module-list li.pro-pr a {
+  color: #ff6a00; /* текст оранжевый */
+}
+
+/* Для экспертного/сложного уровня */
+.module-list li.expert-pr {
+  border-left-color: #e60000; /* насыщенный красный */
+  background-color: #ffe5e5;  /* светлый красный фон */
+}
+
+.module-list li.expert-pr a {
+  color: #cc0000; /* текст красный */
+}
+
 /* Тёмная тема */
 @media (prefers-color-scheme: dark) {
   .module-list li {
