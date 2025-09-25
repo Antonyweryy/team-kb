@@ -9,13 +9,13 @@ body {
   padding: 16px;
   transition: background-color 0.3s, color 0.3s;
 }
-#main-content {
-  display: none; /* Скрываем весь контент до проверки доступа */
+/* #main-content {
+  display: none; 
 }
 #main-content .pro, 
 #main-content .expert {
   display: none;
-}
+} */ 
 
 .img-content {
   max-width: 100%;
