@@ -9,9 +9,10 @@ body {
   padding: 16px;
   transition: background-color 0.3s, color 0.3s;
 }
-/* #main-content {
+#main-content {
   display: none; 
-}
+} 
+/*
 #main-content .pro, 
 #main-content .expert {
   display: none;
