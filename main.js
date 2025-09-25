@@ -71,9 +71,9 @@ if (main) main.style.display = "block";
     usernameDiv.appendChild(document.createTextNode(name));
 
     // === доступ к модулям ===
-    const isPro = !!data.user.isPro;
-    const isExpert = !!data.user.isExpert;
-
+    const isPro = data.user.isPro;
+    const isExpert = data.user.isExpert;
+/*
     // скрываем по умолчанию
     document.querySelectorAll(".pro, .expert").forEach(el => {
       el.style.display = "none";
@@ -89,7 +89,7 @@ if (main) main.style.display = "block";
         el.style.display = "list-item";
       });
     }
-
+*/
 
     return true;
 
