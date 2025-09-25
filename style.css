@@ -12,6 +12,11 @@ body {
 #main-content {
   display: none; /* Скрываем весь контент до проверки доступа */
 }
+#main-content .pro, 
+#main-content .expert {
+  display: none;
+}
+
 .img-content {
   max-width: 100%;
   height: auto;
