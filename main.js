@@ -75,7 +75,7 @@ if (main) main.style.display = "block";
     const isExpert = data.isExpert;
 
     console.log("User data:", data.user);
-    console.log("isPro:", data.user.isPro, "isExpert:", data.user.isExpert);
+    console.log("isPro:", data.isPro, "isExpert:", data.isExpert);
 
     
     // скрываем по умолчанию
