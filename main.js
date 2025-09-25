@@ -70,6 +70,27 @@ if (main) main.style.display = "block";
     }
     usernameDiv.appendChild(document.createTextNode(name));
 
+    // === доступ к модулям ===
+    const isPro = !!data.user.isPro;
+    const isExpert = !!data.user.isExpert;
+
+    // скрываем по умолчанию
+    document.querySelectorAll(".pro, .expert").forEach(el => {
+      el.style.display = "none";
+    });
+
+    if (isPro) {
+      document.querySelectorAll(".pro").forEach(el => {
+        el.style.display = "list-item";
+      });
+    }
+    if (isExpert) {
+      document.querySelectorAll(".expert").forEach(el => {
+        el.style.display = "list-item";
+      });
+    }
+
+
     return true;
 
   } catch (e) {
