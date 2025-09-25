@@ -71,8 +71,9 @@ if (main) main.style.display = "block";
     usernameDiv.appendChild(document.createTextNode(name));
 
     // === доступ к модулям ===
-    const isPro = data.user.isPro;
-    const isExpert = data.user.isExpert;
+    const isPro = data.isPro;
+    const isExpert = data.isExpert;
+
     console.log("User data:", data.user);
     console.log("isPro:", data.user.isPro, "isExpert:", data.user.isExpert);
 
