@@ -73,23 +73,19 @@ if (main) main.style.display = "block";
     // === доступ к модулям ===
     const isPro = data.user.isPro;
     const isExpert = data.user.isExpert;
-/*
+    console.log("User data:", data.user);
+    console.log("isPro:", data.user.isPro, "isExpert:", data.user.isExpert);
+
+    
     // скрываем по умолчанию
     document.querySelectorAll(".pro, .expert").forEach(el => {
       el.style.display = "none";
     });
 
-    if (isPro) {
-      document.querySelectorAll(".pro").forEach(el => {
-        el.style.display = "list-item";
-      });
-    }
-    if (isExpert) {
-      document.querySelectorAll(".expert").forEach(el => {
-        el.style.display = "list-item";
-      });
-    }
-*/
+    if (isPro) document.querySelectorAll(".pro").forEach(el => el.style.display = "block");
+    if (isExpert) document.querySelectorAll(".expert").forEach(el => el.style.display = "block");
+
+
 
     return true;
 
