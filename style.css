@@ -77,6 +77,7 @@ body {
   color: var(--text);
   padding: 16px;
   transition: background-color 0.3s, color 0.3s;
+  padding-top: 60px;
 }
 
 /* ==========================
@@ -90,18 +91,20 @@ body {
   transform: translateX(-50%);
   width: 260px;       /* чуть уже */
   height: 48px;       /* чуть выше */
-  padding: 8px 14px;
+  padding: 0 14px;    /* убрал вертикальный padding, чтобы проще центрировать */
   display: flex;
-  align-items: center;
-  gap: 10px;
+  align-items: center; /* вертикальное центрирование */
+  justify-content: center; /* центрирует текст по горизонтали */
   box-sizing: border-box;
   border-radius: 12px; 
-  background: rgba(255, 255, 255, 0.25); /* прозрачный светлый фон для светлой темы */
+  background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   z-index: 1100;
-  color: var(--topbar-text); /* подстраиваем под тему */
+  color: var(--topbar-text);
+  text-align: center; /* на всякий случай для текста */
+  gap: 10px;
 }
 
 #topbar img {
@@ -110,13 +113,19 @@ body {
   border-radius: 50%;
   object-fit: cover;
   border: 1px solid rgba(255,255,255,0.3);
+  position: absolute; /* аватарка фиксируется слева */
+  left: 12px;         /* отступ от левого края */
 }
 
 #topbar #username {
   font-size: 15px;
   font-weight: 500;
-  color: var(--topbar-text); /* адаптация под светлую/темную тему */
+  color: var(--topbar-text);
   white-space: nowrap;
+  margin: 0 auto; /* центрирует текст горизонтально относительно плашки */
+  display: flex;
+  align-items: center; /* вертикальное центрирование текста */
+  height: 100%;
 }
 
 /* Прячем шапку при открытом модуле */
