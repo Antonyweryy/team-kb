@@ -86,37 +86,42 @@ body {
 #topbar {
   position: sticky;
   top: 0;
-  width: 100%;
-  background: var(--topbar-bg);
-  color: var(--topbar-text);
-  padding: 12px 16px;
+  width: fit-content; /* по содержимому, не на всю ширину */
+  max-width: 300px;   /* можно подстроить под нужную ширину */
+  margin: 8px auto;   /* центрируем горизонтально */
+  padding: 6px 12px;  /* меньше по высоте */
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   box-sizing: border-box;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px; /* закругление углов для эстетики */
+  background: rgba(255, 255, 255, 0.1); /* прозрачность */
+  backdrop-filter: blur(10px); /* эффект матового стекла */
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* лёгкая тень для объёма */
   z-index: 1100;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
 #topbar img {
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid rgba(255,255,255,0.5);
+  border: 1px solid rgba(255,255,255,0.3); /* тонкая рамка */
 }
 
 #topbar #username {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--topbar-text);
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  white-space: nowrap; /* не переносить имя */
 }
 
 /* Прячем шапку при открытом модуле */
 body.no-scroll #topbar {
   display: none;
 }
+
 
 /* ==========================
    Контент и структура
