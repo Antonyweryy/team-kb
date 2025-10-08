@@ -1,6 +1,12 @@
 // main.js
 
-const tg = (window.Telegram && window.Telegram.WebApp) ? window.Telegram.WebApp : null;
+//const tg = (window.Telegram && window.Telegram.WebApp) ? window.Telegram.WebApp : null;
+const tg = window.Telegram.WebApp;
+document.documentElement.setAttribute('data-theme', tg.colorScheme);
+tg.onEvent('themeChanged', () => {
+  document.documentElement.setAttribute('data-theme', tg.colorScheme);
+});
+
 
 async function checkAccess() {
   // Получаем div для имени
