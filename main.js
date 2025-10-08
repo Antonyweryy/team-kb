@@ -7,6 +7,10 @@ tg.onEvent('themeChanged', () => {
   document.documentElement.setAttribute('data-theme', tg.colorScheme);
 });
 
+function closeModule() {
+  document.querySelectorAll('.module').forEach(m => m.classList.remove('active'));
+  document.body.classList.remove('no-scroll');
+}
 
 async function checkAccess() {
   // Получаем div для имени
