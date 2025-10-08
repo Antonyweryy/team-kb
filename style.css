@@ -84,22 +84,24 @@ body {
    ========================== */
 
 #topbar {
-  position: sticky;
+  position: absolute; /* чтобы не закреплялся при скролле */
   top: 0;
-  width: fit-content; /* по содержимому, не на всю ширину */
-  max-width: 300px;   /* можно подстроить под нужную ширину */
-  margin: 8px auto;   /* центрируем горизонтально */
-  padding: 6px 12px;  /* меньше по высоте */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 260px;       /* чуть уже */
+  height: 48px;       /* чуть выше */
+  padding: 8px 14px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   box-sizing: border-box;
-  border-radius: 16px; /* закругление углов для эстетики */
-  background: rgba(255, 255, 255, 0.1); /* прозрачность */
-  backdrop-filter: blur(10px); /* эффект матового стекла */
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* лёгкая тень для объёма */
+  border-radius: 12px; 
+  background: rgba(255, 255, 255, 0.25); /* прозрачный светлый фон для светлой темы */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   z-index: 1100;
+  color: var(--topbar-text); /* подстраиваем под тему */
 }
 
 #topbar img {
@@ -107,14 +109,14 @@ body {
   height: 32px;
   border-radius: 50%;
   object-fit: cover;
-  border: 1px solid rgba(255,255,255,0.3); /* тонкая рамка */
+  border: 1px solid rgba(255,255,255,0.3);
 }
 
 #topbar #username {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
-  color: #fff;
-  white-space: nowrap; /* не переносить имя */
+  color: var(--topbar-text); /* адаптация под светлую/темную тему */
+  white-space: nowrap;
 }
 
 /* Прячем шапку при открытом модуле */
@@ -122,6 +124,17 @@ body.no-scroll #topbar {
   display: none;
 }
 
+/* Пример переменных для темы */
+:root {
+  --topbar-text: #111; /* для светлой темы */
+}
+
+body.dark {
+  --topbar-text: #fff; /* для тёмной темы */
+  #topbar {
+    background: rgba(0,0,0,0.25);
+  }
+}
 
 /* ==========================
    Контент и структура
