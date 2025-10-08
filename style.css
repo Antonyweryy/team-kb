@@ -388,3 +388,18 @@ body.no-scroll {
   border-color: #444;
 }
 
+/* Отключённые (пустые) модули */
+.disabled-module {
+  opacity: 0.5; /* бледность */
+  pointer-events: none; /* некликабельность */
+  filter: grayscale(40%);
+  cursor: not-allowed;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+/* Чтобы при наведении не подсвечивались */
+.disabled-module:hover {
+  opacity: 0.5;
+  transform: none;
+  box-shadow: none;
+}
