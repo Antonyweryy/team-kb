@@ -270,30 +270,56 @@ body.no-scroll {
    ========================== */
 
 .important {
-  background: var(--important-bg);
-  border: 1px solid var(--important-border);
-  border-radius: 8px;
-  padding: 12px 16px;
-  color: var(--important-text);
-  font-weight: 500;
-  line-height: 1.5;
+  position: relative;
+  background: var(--pro-bg); /* тёплый фон */
+  border-left: 5px solid var(--pro-border);
+  border-radius: 10px;
+  padding: 16px 18px 16px 52px;
+  color: var(--text);
+  line-height: 1.6;
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: all 0.25s ease;
 }
 
+/* Иконка ℹ️ */
+.important::before {
+  content: "ℹ️";
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  font-size: 20px;
+  opacity: 0.9;
+}
+
+/* Заголовок внутри */
+.important strong {
+  display: block;
+  color: var(--pro-text);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+/* Hover-анимация */
+.important:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+/* Цитаты (без изменений, только чуть унификация под визуал) */
 .quote {
   border-left: 3px solid var(--quote-border);
   background: var(--quote-bg);
   color: var(--quote-text);
-  border-radius: 4px;
+  border-radius: 6px;
   padding: 10px 14px;
   font-style: italic;
-}
-
-/* Hover-эффекты */
-.important:hover, .quote:hover {
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   transition: all 0.2s ease;
 }
+
+.quote:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
 
 /* ==========================
    Loader
