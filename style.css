@@ -1,71 +1,103 @@
-/* Сброс */
-body, h1, h2, p, ul, li { margin: 0; padding: 0; }
+/* ==========================
+   БАЗА Telegram-стиля
+   ========================== */
 
+/* Сброс отступов */
+body, h1, h2, h3, h4, p, ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+/* Переменные тем */
+:root[data-theme='light'] {
+  --bg: #ffffff;
+  --text: #111111;
+  --secondary-text: #555;
+  --accent: #0088cc;
+
+  --topbar-bg: linear-gradient(90deg, #0088cc, #29a9e0);
+  --topbar-text: #ffffff;
+
+  --card-bg: #f2f3f5;
+  --card-border: #dcdcdc;
+  --card-hover: rgba(0, 136, 204, 0.08);
+
+  --pro-bg: #fff4e5;
+  --pro-border: #ff8c00;
+  --pro-text: #ff6a00;
+
+  --expert-bg: #ffe5e5;
+  --expert-border: #e60000;
+  --expert-text: #cc0000;
+
+  --important-bg: #eaf6ff;
+  --important-border: #0088cc;
+  --important-text: #005f8a;
+
+  --quote-bg: #fffbf0;
+  --quote-border: #cc8500;
+  --quote-text: #2c3e50;
+}
+
+:root[data-theme='dark'] {
+  --bg: #1e1e1e;
+  --text: #e1e1e1;
+  --secondary-text: #aaa;
+  --accent: #29a9e0;
+
+  --topbar-bg: linear-gradient(90deg, #1c1c1c, #2a2a2a);
+  --topbar-text: #ffffff;
+
+  --card-bg: #222;
+  --card-border: #444;
+  --card-hover: rgba(255, 255, 255, 0.05);
+
+  --pro-bg: #3a2a10;
+  --pro-border: #ffb366;
+  --pro-text: #ffae5a;
+
+  --expert-bg: #3a0f0f;
+  --expert-border: #ff6666;
+  --expert-text: #ff9999;
+
+  --important-bg: #10344a;
+  --important-border: #29a9e0;
+  --important-text: #cde9ff;
+
+  --quote-bg: #2a2520;
+  --quote-border: #cc8500;
+  --quote-text: #e1e1e1;
+}
+
+/* Базовые стили */
 body {
   font-family: 'Telegram WebApp', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  background-color: #fff;
-  color: #111;
+  line-height: 1.6;
+  background-color: var(--bg);
+  color: var(--text);
   padding: 16px;
   transition: background-color 0.3s, color 0.3s;
 }
-#main-content {
-  display: none; 
-} 
 
-#main-content .pro, 
-#main-content .expert {
-  display: none;
-} 
+/* ==========================
+   Верхняя панель
+   ========================== */
 
-.img-content {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 16px auto;
-  border-radius: 8px;
-}
-#loader {
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  height:100vh;
-}
-.spinner {
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #0088cc;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  animation: spin 1s linear infinite;
-  margin-bottom: 10px;
-}
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* ==== Верхняя панель ==== */
 #topbar {
   position: sticky;
   top: 0;
-  left: 0;
   width: 100%;
-  background: linear-gradient(90deg, #0088cc, #29a9e0);
-  color: #fff;
-  padding: 12px 16px;       /* сверху/снизу 12px, слева/справа 16px */
+  background: var(--topbar-bg);
+  color: var(--topbar-text);
+  padding: 12px 16px;
   display: flex;
   align-items: center;
   gap: 12px;
-  box-sizing: border-box;   /* чтобы padding учитывался внутри width */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-sizing: border-box;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   z-index: 1100;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  overflow: hidden;
-  /* max-width: 96vw; */    /* можно убрать, чтобы не резало справа */
 }
-
 
 #topbar img {
   width: 36px;
@@ -78,212 +110,214 @@ body {
 #topbar #username {
   font-size: 16px;
   font-weight: 600;
-  color: #fff;
+  color: var(--topbar-text);
 }
+
+/* Прячем шапку при открытом модуле */
 body.no-scroll #topbar {
-  display: none; /* прячем шапку при открытом модуле */
+  display: none;
 }
 
+/* ==========================
+   Контент и структура
+   ========================== */
 
-/* Тёмная тема */
-@media (prefers-color-scheme: dark) {
-  #topbar {
-    background: linear-gradient(90deg, #1c1c1c, #2a2a2a);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  #topbar #username { color: #fff; }
+#main-content {
+  display: none;
 }
 
-
-/* Тёмная тема */
-@media (prefers-color-scheme: dark) {
-  body { background-color: #1e1e1e; color: #e1e1e1; }
-  h1, h2 { color: #fff; }
+.img-content {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 16px auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-/* Заголовки */
-h1 { font-size: 28px; margin-bottom: 8px; }
+/* Отступы между элементами */
+p, ul, .important, .quote, img, h2, h3, h4 {
+  margin-bottom: 16px;
+}
 
-/* Список модулей */
+/* ==========================
+   Заголовки
+   ========================== */
+
+h1 {
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+
+h2 {
+  font-size: 22px;
+  margin: 24px 0 12px;
+}
+
+h3 {
+  font-size: 18px;
+  margin: 20px 0 8px;
+}
+
+h4 {
+  font-size: 16px;
+  margin: 16px 0 6px;
+}
+
+/* ==========================
+   Списки модулей
+   ========================== */
+
 .module-list {
-  list-style: none;      /* убираем стандартные буллеты */
-  padding: 0;            /* сброс padding */
-  margin: 16px 0;        /* отступ сверху и снизу */
+  list-style: none;
+  padding: 0;
+  margin: 16px 0;
   display: flex;
   flex-direction: column;
-  gap: 3px;              /* расстояние между элементами */
+  gap: 6px;
 }
 
 .module-list li {
-  padding:8px 12px; 
-  margin-bottom:8px; 
-  background:#f2f3f5; 
-  border-left:4px solid #0088cc; 
-  border-radius:6px;
+  background: var(--card-bg);
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+  padding: 10px 14px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.module-list li:hover {
+  background: var(--card-hover);
+  transform: translateY(-1px);
+}
+
+/* Профильные */
+.module-list li.pro,
+.module-list li.ppr {
+  border-left-color: var(--pro-border);
+  background: var(--pro-bg);
+}
+
+.module-list li.pro a,
+.module-list li.ppr a {
+  color: var(--pro-text);
+}
+
+/* Экспертные */
+.module-list li.expert,
+.module-list li.epr {
+  border-left-color: var(--expert-border);
+  background: var(--expert-bg);
+}
+
+.module-list li.expert a,
+.module-list li.epr a {
+  color: var(--expert-text);
 }
 
 .module-list li a {
   display: block;
-  padding: 2px 6px;    /* внутренний отступ */
-  color: #0088cc;
-  font-weight: 500;
   text-decoration: none;
+  color: var(--accent);
+  font-weight: 500;
+  padding: 2px 6px;
 }
 
-.module-list li a:hover {
-  background: rgba(0, 136, 204, 0.08);
-  border-radius: 8px;
+/* ==========================
+   Модули
+   ========================== */
+
+.module {
+  display: none;
 }
 
-.module-list li.pro {
-  border-left-color: #ff8c00; /* насыщенный оранжевый */
-  background-color: #fff4e5;  /* светлый оранжевый фон */
-}
-
-.module-list li.pro a {
-  color: #ff6a00; /* текст оранжевый */
-}
-
-/* Для экспертного/сложного уровня */
-.module-list li.expert {
-  border-left-color: #e60000; /* насыщенный красный */
-  background-color: #ffe5e5;  /* светлый красный фон */
-}
-
-.module-list li.expert a {
-  color: #cc0000; /* текст красный */
-}
-
-.module-list li.ppr {
-  border-left-color: #ff8c00; /* насыщенный оранжевый */
-  background-color: #fff4e5;  /* светлый оранжевый фон */
-}
-
-.module-list li.ppr a {
-  color: #ff6a00; /* текст оранжевый */
-}
-
-/* Для экспертного/сложного уровня */
-.module-list li.epr {
-  border-left-color: #e60000; /* насыщенный красный */
-  background-color: #ffe5e5;  /* светлый красный фон */
-}
-
-.module-list li.epr a {
-  color: #cc0000; /* текст красный */
-}
-
-/* Тёмная тема */
-@media (prefers-color-scheme: dark) {
-  .module-list li {
-    background-color: #222;
-    border-color: #444;
-  }
-  .module-list li a {
-    color: #fff;
-  }
-  .module-list li a:hover {
-    background: rgba(255, 255, 255, 0.05);
-  }
-}
-
-/* Модули — по умолчанию скрыты через CSS */
-.module { display: none; }
-
-/* Когда активен — полный экран, прокрутка внутри модуля */
 .module.active {
   display: block;
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background-color: #fff; color: #111;
-  padding: 20px; overflow-y: auto; z-index: 1300; box-sizing: border-box;
-}
-
-/* Отключаем прокрутку фона при открытом модуле */
-body.no-scroll { overflow: hidden; }
-
-/* Кнопка назад */
-.back {
-  background: #0088cc; color: #fff; border: none; border-radius: 6px;
-  padding: 6px 12px; font-size: 14px; cursor: pointer; margin-bottom: 16px;
-}
-
-/* Тёмная тема для модулей */
-@media (prefers-color-scheme: dark) {
-  .module.active { background-color: #1e1e1e; color: #e1e1e1; }
-  .module-list li { border-color: #444; background-color: #222; color: #fff; }
-}
-.access-denied {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  height: 100vh;
-  background: linear-gradient(135deg, #2c3e50, #4ca1af);
-  color: #fff;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  text-align: center;
+  background-color: var(--bg);
+  color: var(--text);
   padding: 20px;
+  overflow-y: auto;
+  z-index: 1300;
   box-sizing: border-box;
 }
 
-.access-denied .icon {
-  font-size: 64px;
-  margin-bottom: 20px;
+body.no-scroll {
+  overflow: hidden;
 }
 
-.access-denied .title {
-  font-size: 28px;
-  font-weight: bold;
-  margin-bottom: 10px;
+/* Кнопка "Назад" */
+.back {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  transition: background 0.2s ease;
 }
 
-.access-denied .subtitle {
-  font-size: 18px;
-  margin-bottom: 30px;
+.back:hover {
+  background: #0077b3;
 }
 
-.access-denied .btn {
-  padding: 12px 24px;
-  background: #fff;
-  color: #2c3e50;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: 0.3s;
-}
-.access-denied .btn:hover {
-  background: #f1f1f1;
-}
-/* Синяя рамка для важного блока */
+/* ==========================
+   Важные блоки и цитаты
+   ========================== */
+
 .important {
-  background-color: #eaf6ff;        /* светло-голубой фон */
-  border: 1px solid #0088cc;        /* насыщенный синий бордер */
-  border-radius: 8px;               /* скругление углов */
-  padding: 12px 16px;               /* внутренние отступы */
-  margin: 12px 0;                   /* внешние отступы сверху/снизу */
-  color: #005f8a;                   /* темно-синий текст */
-  font-weight: 500;                  /* чуть жирнее обычного текста */
+  background: var(--important-bg);
+  border: 1px solid var(--important-border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: var(--important-text);
+  font-weight: 500;
   line-height: 1.5;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08); /* лёгкая тень для объёма */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
 
-/* Цитаты */
 .quote {
-  border-left: 3px solid #cc8500;   /* синий слева */
-  padding-left: 12px;               /* отступ от бордера */
-  margin: 10px 0 12px 0;            /* внешние отступы */
-  font-style: italic;               /* курсив */
-  color: #2c3e50;                   /* тёмно-синий текст */
-  background-color: #fffbf0;        /* очень светлый голубой фон */
-  border-radius: 4px;               /* лёгкое скругление */
-  padding: 10px 14px;               /* внутренние отступы */
+  border-left: 3px solid var(--quote-border);
+  background: var(--quote-bg);
+  color: var(--quote-text);
+  border-radius: 4px;
+  padding: 10px 14px;
+  font-style: italic;
 }
 
-/* Можно добавить маленький эффект при наведении для интерактивности */
+/* Hover-эффекты */
 .important:hover, .quote:hover {
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   transition: all 0.2s ease;
+}
+
+/* ==========================
+   Loader
+   ========================== */
+
+#loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid var(--accent);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
