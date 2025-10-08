@@ -117,10 +117,9 @@ body {
   left: 12px;         /* отступ от левого края */
 }
 
-#my-avatar {
-  margin-bottom: 0;
+img.my-avatar {
+  margin-bottom: 0 !important; /* чтобы перебить глобальный img */
 }
-
 
 #topbar #username {
   font-size: 15px;
