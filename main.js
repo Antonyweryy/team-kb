@@ -71,6 +71,7 @@ if (main) main.style.display = "block";
       const img = document.createElement("img");
       img.src = photo;
       img.alt = name;
+      img.classList.add("my-avatar"); 
       img.style.width = "32px";
       img.style.height = "32px";
       img.style.objectFit = "cover";
