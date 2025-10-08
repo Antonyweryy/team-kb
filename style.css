@@ -107,6 +107,23 @@ body {
   gap: 10px;
 }
 
+/* Светлая тема */
+:root[data-theme='light'] {
+  --topbar-text: #222; /* тёмный текст */
+  --topbar-bg: rgba(255,255,255,0.25);
+}
+
+/* Тёмная тема */
+:root[data-theme='dark'] {
+  --topbar-text: #fff; /* белый текст */
+  --topbar-bg: rgba(0,0,0,0.25);
+}
+
+/* Применяем фон через переменную */
+#topbar {
+  background: var(--topbar-bg);
+}
+
 #topbar img {
   width: 32px;
   height: 32px;
@@ -131,16 +148,6 @@ img.my-avatar {
   align-items: center; /* вертикальное центрирование текста */
   height: 100%;
 }
-:root[data-theme="light"] #topbar {
-  color: #222; /* тёмный текст для светлой темы */
-}
-
-:root[data-theme="dark"] #topbar {
-  color: #fff; /* белый текст для тёмной темы */
-}
-
-
-
 /* Прячем шапку при открытом модуле */
 body.no-scroll #topbar {
   display: none;
