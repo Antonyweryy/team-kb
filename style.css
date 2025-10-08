@@ -131,6 +131,13 @@ img.my-avatar {
   align-items: center; /* вертикальное центрирование текста */
   height: 100%;
 }
+:root[data-theme="light"] #topbar {
+  color: #222; /* тёмный текст для светлой темы */
+}
+
+:root[data-theme="dark"] #topbar {
+  color: #fff; /* белый текст для тёмной темы */
+}
 
 
 
