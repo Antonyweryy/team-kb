@@ -542,4 +542,64 @@ a.btn-link:hover {
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
+/* Вариант списка современного */
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 24px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.features li {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 16px;
+  line-height: 1.5;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.features li:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.features strong {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.features em {
+  color: var(--secondary-text);
+  font-style: normal;
+}
+
+/* ===== Темы ===== */
+:root[data-theme='light'] {
+  --bg-card: #ffffff;
+  --border: rgba(0, 0, 0, 0.08);
+  --accent: #007bff;
+  --text: #111;
+  --secondary-text: #555;
+  --shadow: 0 2px 4px rgba(0,0,0,0.04);
+  --shadow-hover: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+:root[data-theme='dark'] {
+  --bg-card: #1e1e1e;
+  --border: rgba(255,255,255,0.08);
+  --accent: #4ea3ff;
+  --text: #eee;
+  --secondary-text: #aaa;
+  --shadow: 0 2px 4px rgba(0,0,0,0.2);
+  --shadow-hover: 0 4px 12px rgba(0,0,0,0.35);
+}
 
