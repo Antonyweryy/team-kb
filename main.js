@@ -18,15 +18,16 @@ async function checkAccess() {
 
   // Функция для показа заглушки
   const showAccessDenied = () => {
-    document.body.innerHTML = `
-      <div class="access-denied">
-        <div class="icon">🚫</div>
-        <div class="title">Доступ запрещён</div>
-        <div class="subtitle">Обратитесь к администратору</div>
-        <a href="mailto:admin@example.com" class="btn">Связаться с админом</a>
-      </div>
-    `;
-  };
+  document.body.innerHTML = `
+    <div class="access-denied">
+      <div class="icon">🚫</div>
+      <div class="title">Доступ запрещён</div>
+      <div class="subtitle">У вас нет прав для просмотра этой страницы</div>
+      <a href="https://t.me/antonywer" target="_blank" class="btn">Связаться с админом</a>
+    </div>
+  `;
+};
+
 
   // Если Telegram нет — сразу заглушка
   if (!tg) {
