@@ -193,19 +193,45 @@ p, ul, .important, .quote, img, h2, h3, h4 {
 
 h1 {
   font-size: 28px;
-  margin-bottom: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  color: #ffffff;
+  background-color: var(--accent);
+  border-radius: 12px;
+  padding: 8px 10px;
+  border: 2px solid var(--accent);
+  margin: 24px 0 20px;
+  letter-spacing: 0.5px;
 }
 
+h1.exp {
+   background-color: #ff8c00;
+}
+
+h1.pro {
+   background-color: #e60000;
+}
+
+/* H2 — жирный текст с вертикальной полосой слева */
 h2 {
   font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  border-left: 6px solid var(--accent);
+  padding-left: 10px;
   margin: 24px 0 12px;
 }
 
+/* H3 — голубой акцент, капсом, чуть меньше */
 h3 {
   font-size: 18px;
-  margin: 20px 0 8px;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin: 20px 0 10px;
+  letter-spacing: 0.3px;
 }
-
 h4 {
   font-size: 16px;
   margin: 16px 0 6px;
