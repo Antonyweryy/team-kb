@@ -207,6 +207,15 @@ h1 {
   letter-spacing: 0.5px;
 }
 
+h2 {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--text);
+  border-left: 4px solid var(--accent);
+  padding-left: 12px;
+  margin: 28px 0 12px;
+}
+
 h1.exp {
    background-color: #e60000;
    border: 2px solid #e60000;
@@ -217,7 +226,7 @@ h1.pro {
    border: 2px solid #ff8c00;
 }
 
-/* H2 — жирный текст с вертикальной полосой слева */
+/* H2 — жирный текст с вертикальной полосой слева 
 h2 {
   font-size: 18px;
   font-weight: 700;
@@ -225,7 +234,7 @@ h2 {
   border-left: 6px solid var(--accent);
   padding-left: 10px;
   margin: 24px 0 12px;
-}
+} */
 
 /* H3 — голубой акцент, капсом, чуть меньше */
 h3 {
@@ -571,9 +580,15 @@ a.btn-link:hover {
 
 /* Заголовки h4 тоже можно покрасить */
 h4.pro {
-  color: var(--pro-text);
   border-left: 4px solid var(--pro-border);
   padding-left: 12px;
+  margin-top: 30px;
+}
+
+h4.expert {
+   border-left: 4px solid var(--expert-border);
+   padding-left: 12px;
+   margin-top: 30px;
 }
 
 /* ===== Темы ===== */
