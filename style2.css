@@ -1,0 +1,683 @@
+:root {
+  --bg: #ffffff;
+  --text: #111111;
+  --secondary-text: #555;
+  --accent: #0088cc;
+  --card-bg: #f2f3f5;
+  --card-border: #dcdcdc;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --info: #3b82f6;
+  --danger: #ef4444;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  background: var(--bg);
+  color: var(--text);
+  padding: 24px 16px 80px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Заголовок модуля */
+.module-header {
+  background: linear-gradient(135deg, #229ED9, #38BDF8);
+  color: white;
+  padding: 24px 20px;
+  border-radius: 16px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 12px rgba(34, 158, 217, 0.2);
+}
+
+.module-header h1 {
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+.module-header p {
+  font-size: 16px;
+  line-height: 1.6;
+  opacity: 0.95;
+  margin-top: 12px;
+}
+
+/* Секции */
+.section {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  border: 1px solid var(--card-border);
+  transition: all 0.3s ease;
+}
+
+.section:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.section-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--accent);
+  color: white;
+  border-radius: 10px;
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.section h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.section h4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--accent);
+  margin: 24px 0 12px;
+  padding-left: 12px;
+  border-left: 4px solid var(--accent);
+}
+
+/* Задачи */
+.tasks-grid {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.task-card {
+  background: white;
+  border-left: 4px solid var(--accent);
+  padding: 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: start;
+  gap: 12px;
+  transition: all 0.2s ease;
+}
+
+.task-card:hover {
+  background: #f8fafc;
+  transform: translateX(4px);
+}
+
+.task-number {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  background: var(--accent);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.task-text {
+  flex: 1;
+  line-height: 1.5;
+}
+
+/* Список преимуществ */
+.features-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.feature-item {
+  background: white;
+  border-radius: 10px;
+  padding: 14px 16px;
+  border: 1px solid #e5e7eb;
+  transition: all 0.2s ease;
+}
+
+.feature-item:hover {
+  border-color: var(--accent);
+  box-shadow: 0 2px 8px rgba(0, 136, 204, 0.1);
+}
+
+.feature-item strong {
+  color: var(--accent);
+  display: block;
+  margin-bottom: 4px;
+  font-size: 15px;
+}
+
+.feature-item em {
+  color: var(--secondary-text);
+  font-style: normal;
+  font-size: 14px;
+}
+
+/* Информационный блок */
+.info-box {
+  background: linear-gradient(135deg, #dbeafe 0%, #e0f2fe 100%);
+  border-left: 4px solid var(--info);
+  padding: 16px 20px;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+.info-box p {
+  margin: 8px 0;
+  line-height: 1.6;
+  color: #0c4a6e;
+}
+
+.info-box p:first-child {
+  margin-top: 0;
+}
+
+.info-box p:last-child {
+  margin-bottom: 0;
+}
+
+/* Цитата/Пример */
+.quote-box {
+  background: #fef3c7;
+  border-left: 4px solid #f59e0b;
+  padding: 14px 18px;
+  border-radius: 8px;
+  margin: 12px 0;
+  color: #78350f;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* Важный блок */
+.important-box {
+  background: linear-gradient(135deg, #fff4e5 0%, #ffe8cc 100%);
+  border: 2px solid var(--warning);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin: 20px 0;
+  position: relative;
+  padding-left: 60px;
+}
+
+.important-box::before {
+  content: "⚠️";
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  font-size: 28px;
+}
+
+.important-box strong {
+  display: block;
+  color: #c2410c;
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+
+.important-box p {
+  color: #78350f;
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+.important-box p:last-child {
+  margin-bottom: 0;
+}
+
+/* Пошаговая инструкция */
+.steps-list {
+  list-style: none;
+  counter-reset: step-counter;
+  margin: 20px 0;
+}
+
+.steps-list li {
+  counter-increment: step-counter;
+  position: relative;
+  background: white;
+  border-radius: 10px;
+  padding: 16px 16px 16px 60px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.steps-list li:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateX(4px);
+}
+
+.steps-list li::before {
+  content: counter(step-counter);
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  background: var(--accent);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+/* Список правил */
+.rules-list {
+  list-style: none;
+  margin: 16px 0;
+}
+
+.rules-list li {
+  background: white;
+  border-left: 4px solid var(--info);
+  padding: 12px 16px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.rules-list li:hover {
+  background: #f0f9ff;
+  transform: translateX(4px);
+}
+
+/* Структура рассылки */
+.structure-block {
+  background: white;
+  border: 2px solid var(--card-border);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.structure-block h4 {
+  margin-top: 0;
+}
+
+/* Примеры */
+.examples-grid {
+  display: grid;
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.example-card {
+  background: #fef3c7;
+  border-left: 4px solid #f59e0b;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #78350f;
+}
+
+/* Список вариантов */
+.variants-list {
+  background: white;
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin: 16px 0;
+}
+
+.variants-list ul {
+  list-style: none;
+  margin: 12px 0 0 0;
+}
+
+.variants-list li {
+  padding: 8px 0 8px 28px;
+  position: relative;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.variants-list li:last-child {
+  border-bottom: none;
+}
+
+.variants-list li::before {
+  content: "💬";
+  position: absolute;
+  left: 0;
+  top: 8px;
+}
+
+/* Ошибка */
+.error-box {
+  background: #fee2e2;
+  border-left: 4px solid var(--danger);
+  padding: 14px 18px;
+  border-radius: 8px;
+  margin: 16px 0;
+  color: #991b1b;
+}
+
+.error-box strong {
+  display: block;
+  margin-bottom: 6px;
+}
+
+/* Совет */
+.tip-box {
+  background: #dcfce7;
+  border-left: 4px solid var(--success);
+  padding: 14px 18px;
+  border-radius: 8px;
+  margin: 16px 0;
+  color: #065f46;
+}
+
+.tip-box strong {
+  display: block;
+  margin-bottom: 6px;
+}
+
+/* Примеры воронки */
+.funnel-example {
+  background: white;
+  border: 2px dashed #cbd5e1;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.funnel-steps {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 16px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.funnel-step {
+  text-align: center;
+}
+
+.funnel-number {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--accent);
+  display: block;
+}
+
+.funnel-label {
+  font-size: 13px;
+  color: var(--secondary-text);
+  margin-top: 4px;
+}
+
+.funnel-arrow {
+  font-size: 20px;
+  color: var(--secondary-text);
+}
+
+/* Ключевая мысль */
+.key-message {
+  background: linear-gradient(135deg, #dcfce7 0%, #d1fae5 100%);
+  border: 2px solid var(--success);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin: 24px 0;
+  text-align: center;
+}
+
+.key-message-icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.key-message p {
+  font-size: 17px;
+  font-weight: 600;
+  color: #065f46;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Финальный блок */
+.final-box {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border: 2px solid var(--info);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin: 24px 0;
+  text-align: center;
+}
+
+.final-box strong {
+  display: block;
+  font-size: 18px;
+  color: var(--info);
+  margin-bottom: 12px;
+}
+
+.final-box p {
+  line-height: 1.6;
+  color: #0c4a6e;
+  margin-bottom: 8px;
+}
+
+.final-box em {
+  display: block;
+  font-style: italic;
+  margin-top: 12px;
+  font-size: 15px;
+  color: #0369a1;
+}
+
+/* Навигация */
+.next-module {
+  background: white;
+  border: 2px solid var(--accent);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-top: 32px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  transition: all 0.3s ease;
+}
+
+.next-module:hover {
+  background: var(--accent);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 136, 204, 0.3);
+}
+
+.next-module span {
+  display: block;
+  font-size: 14px;
+  color: var(--secondary-text);
+  margin-bottom: 4px;
+}
+
+.next-module:hover span {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.next-module strong {
+  font-size: 16px;
+  color: var(--accent);
+}
+
+.next-module:hover strong {
+  color: white;
+}
+
+/* Список с буллетами */
+.bullet-list {
+  list-style: none;
+  margin: 16px 0;
+}
+
+.bullet-list li {
+  padding-left: 28px;
+  position: relative;
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+.bullet-list li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* Изображение */
+.img-content {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 24px auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Разделитель */
+.divider {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--card-border), transparent);
+  margin: 32px 0;
+}
+
+@media (max-width: 640px) {
+  .funnel-steps {
+    flex-direction: column;
+  }
+  
+  .funnel-arrow {
+    transform: rotate(90deg);
+  }
+  
+  .structure-block {
+    padding: 16px;
+  }
+}
+
+/* Примеры аккаунтов */
+    .examples-section {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+
+    .examples-section h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .example-comparison {
+      display: grid;
+      gap: 20px;
+      margin-top: 16px;
+    }
+
+    .example-item {
+      background: white;
+      border-radius: 12px;
+      padding: 16px;
+      border: 2px solid var(--card-border);
+    }
+
+    .example-item.bad {
+      border-color: var(--danger);
+    }
+
+    .example-item.good {
+      border-color: var(--success);
+    }
+
+    .example-label {
+      font-weight: 700;
+      margin-bottom: 12px;
+      padding: 6px 12px;
+      border-radius: 6px;
+      display: inline-block;
+      font-size: 14px;
+    }
+
+    .example-item.bad .example-label {
+      background: #fee2e2;
+      color: var(--danger);
+    }
+
+    .example-item.good .example-label {
+      background: #dcfce7;
+      color: var(--success);
+    }
+     /* Чеклист */
+    .checklist {
+      background: linear-gradient(135deg, #dcfce7 0%, #d1fae5 100%);
+      border-left: 4px solid var(--success);
+      padding: 16px 20px;
+      border-radius: 10px;
+      margin: 16px 0;
+    }
+
+    .checklist-item {
+      display: flex;
+      align-items: start;
+      gap: 12px;
+      margin-bottom: 10px;
+      color: #065f46;
+    }
+
+    .checklist-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .checklist-item::before {
+      content: "✓";
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      background: var(--success);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 12px;
+    }
