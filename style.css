@@ -542,44 +542,38 @@ a.btn-link:hover {
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-/* Вариант списка современного */
-.features {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  margin: 24px 0;
-  padding: 0;
-  list-style: none;
+/* Цвета подчёркивания для профильных модулей */
+.module-list li.pro a::after {
+  background: var(--pro-border); /* оранжевый */
 }
 
-.features li {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 14px 16px;
-  line-height: 1.5;
-  box-shadow: var(--shadow);
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
+.module-list li.pro a:hover::after {
+  background: var(--pro-border);
 }
 
-.features li:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-hover);
+/* Цвета подчёркивания для экспертных модулей */
+.module-list li.expert a::after {
+  background: var(--expert-border); /* красный */
 }
 
-.features strong {
-  display: block;
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 6px;
-  color: var(--accent);
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
+.module-list li.expert a:hover::after {
+  background: var(--expert-border);
 }
 
-.features em {
-  color: var(--secondary-text);
-  font-style: normal;
+/* Цвет текста при наведении тоже меняем */
+.module-list li.pro a:hover {
+  color: var(--pro-text);
+}
+
+.module-list li.expert a:hover {
+  color: var(--expert-text);
+}
+
+/* Заголовки h4 тоже можно покрасить */
+h4.pro {
+  color: var(--pro-text);
+  border-left: 4px solid var(--pro-border);
+  padding-left: 12px;
 }
 
 /* ===== Темы ===== */
