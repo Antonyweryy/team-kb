@@ -92,18 +92,20 @@ if (main) main.style.display = "block";
     // === доступ к модулям ===
     const isPro = data.isPro;
     const isExpert = data.isExpert;
+    const isBonus = data.isBonus;
 
     console.log("User data:", data.user);
-    console.log("isPro:", data.isPro, "isExpert:", data.isExpert);
+    console.log("isPro:", data.isPro, "isExpert:", data.isExpert, "isBonus:", data.isBonus);
 
     
     // скрываем по умолчанию
-    document.querySelectorAll(".pro, .expert").forEach(el => {
+    document.querySelectorAll(".pro, .expert .bonus").forEach(el => {
       el.style.display = "none";
     });
 
     if (isPro) document.querySelectorAll(".pro").forEach(el => el.style.display = "block");
     if (isExpert) document.querySelectorAll(".expert").forEach(el => el.style.display = "block");
+    if (isBonus) document.querySelectorAll(".bonus").forEach(el => el.style.display = "block");
 
 
 
