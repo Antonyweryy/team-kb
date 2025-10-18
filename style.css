@@ -181,6 +181,7 @@ body.dark {
 
 #main-content {
   display: none;
+  padding-top: 80px;
 }
 
 .img-content {
