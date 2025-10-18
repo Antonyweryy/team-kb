@@ -99,7 +99,7 @@ if (main) main.style.display = "block";
 
     
     // скрываем по умолчанию
-    document.querySelectorAll(".pro, .expert .bonus").forEach(el => {
+    document.querySelectorAll(".pro, .expert, .bonus").forEach(el => {
       el.style.display = "none";
     });
 
