@@ -18,6 +18,13 @@ async function checkAccess() {
 
   // Функция для показа заглушки
   const showAccessDenied = () => {
+     const loader = document.getElementById("loader");
+    const main = document.getElementById("main-content");
+    const topbar = document.getElementById("topbar");
+    
+    if (loader) loader.remove();
+    if (main) main.remove();
+    if (topbar) topbar.remove();
   document.body.innerHTML = `
     <div class="access-denied">
       <div class="icon">🚫</div>
