@@ -86,28 +86,28 @@ body {
    Верхняя панель
    ========================== */
 
-#topbar {
-  position: absolute; /* чтобы не закреплялся при скролле */
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 260px;       /* чуть уже */
-  height: 48px;       /* чуть выше */
-  padding: 0 14px;    /* убрал вертикальный padding, чтобы проще центрировать */
-  display: flex;
-  align-items: center; /* вертикальное центрирование */
-  justify-content: center; /* центрирует текст по горизонтали */
-  box-sizing: border-box;
-  border-radius: 12px; 
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  z-index: 1100;
-  color: var(--topbar-text);
-  text-align: center; /* на всякий случай для текста */
-  gap: 10px;
-}
+/* Topbar */
+    #topbar {
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 32px);
+      max-width: 400px;
+      height: 48px;
+      padding: 0 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      z-index: 1100;
+      color: var(--text);
+    }
 
 /* Светлая тема */
 :root[data-theme='light'] {
