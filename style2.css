@@ -1089,3 +1089,148 @@ body {
     top: 12px;
   }
 }
+/* Категория добавок */
+    .category {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 1px solid var(--card-border);
+      transition: all 0.3s ease;
+    }
+
+    .category:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transform: translateY(-2px);
+    }
+
+    :root[data-theme='dark'] .category:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--card-border);
+    }
+
+    .category-icon {
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+
+    .category-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      flex: 1;
+    }
+
+    /* Цветные акценты для категорий */
+    .category.priority {
+      border-left: 4px solid var(--danger);
+    }
+
+    .category.men {
+      border-left: 4px solid var(--info);
+    }
+
+    .category.women {
+      border-left: 4px solid var(--pink);
+    }
+
+    .category.brain {
+      border-left: 4px solid var(--purple);
+    }
+
+    .category.health {
+      border-left: 4px solid var(--success);
+    }
+
+    .category.energy {
+      border-left: 4px solid var(--warning);
+    }
+
+    /* Список добавок */
+    .supplements-list {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+    }
+
+    .supplement-item {
+      background: white;
+      padding: 10px 14px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s ease;
+      border-left: 3px solid transparent;
+    }
+
+    :root[data-theme='dark'] .supplement-item {
+      background: #1a1a1a;
+    }
+
+    .supplement-item:hover {
+      background: #f8fafc;
+      border-left-color: var(--accent);
+      transform: translateX(4px);
+    }
+
+    :root[data-theme='dark'] .supplement-item:hover {
+      background: #2d2d2d;
+    }
+
+    .supplement-number {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      background: var(--accent);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    .supplement-name {
+      flex: 1;
+      line-height: 1.4;
+      color: var(--text);
+    }
+
+    /* Важная категория */
+    .priority .category-header {
+      border-bottom-color: var(--danger);
+    }
+
+    .priority .supplement-number {
+      background: var(--danger);
+    }
+
+    /* Разделитель */
+    .divider {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--card-border), transparent);
+      margin: 32px 0;
+    }
+
+    /* Сетка для категорий */
+    @media (min-width: 768px) {
+      .categories-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+
+      .category.full-width {
+        grid-column: 1 / -1;
+      }
+    }
