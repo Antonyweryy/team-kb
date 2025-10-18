@@ -32,6 +32,10 @@ body, h1, h2, h3, h4, p, ul, li {
   --expert-border: #e60000;
   --expert-text: #cc0000;
 
+  --bonus-bg: #e9ffe9;
+  --bonus-border: #00b300;
+  --bonus-text: #008000;
+
   --important-bg: #eaf6ff;
   --important-border: #0088cc;
   --important-text: #005f8a;
@@ -61,6 +65,10 @@ body, h1, h2, h3, h4, p, ul, li {
   --expert-bg: #3a0f0f;
   --expert-border: #ff6666;
   --expert-text: #ff9999;
+
+  --bonus-bg: #103a10;
+  --bonus-border: #66ff66;
+  --bonus-text: #b3ffb3;
 
   --important-bg: #10344a;
   --important-border: #29a9e0;
@@ -299,6 +307,16 @@ h4 {
 .module-list li.expert a,
 .module-list li.epr a {
   color: var(--expert-text);
+}
+
+/* Бонусные */
+.module-list li.bonus {
+  border-left-color: var(--bonus-border);
+  background: var(--bonus-bg);
+}
+
+.module-list li.bonus a {
+  color: var(--bonus-text);
 }
 
 .module-list li a {
@@ -569,6 +587,15 @@ a.btn-link:hover {
   background: var(--expert-border);
 }
 
+/* Цвета подчёркивания для бонусных модулей */
+.module-list li.bonus a::after {
+  background: var(--bonus-border); /* красный */
+}
+
+.module-list li.bonus a:hover::after {
+  background: var(--bonus-border);
+}
+
 /* Цвет текста при наведении тоже меняем */
 .module-list li.pro a:hover {
   color: var(--pro-text);
@@ -576,6 +603,10 @@ a.btn-link:hover {
 
 .module-list li.expert a:hover {
   color: var(--expert-text);
+}
+
+.module-list li.bonus a:hover {
+  color: var(--bonus-text);
 }
 
 /* Заголовки h4 тоже можно покрасить */
@@ -587,6 +618,11 @@ h4.pro {
 
 h4.expert {
    border-left: 4px solid var(--expert-border);
+   padding-left: 12px;
+   margin-top: 30px;
+}
+h4.bonus {
+   border-left: 4px solid var(--bonus-border);
    padding-left: 12px;
    margin-top: 30px;
 }
