@@ -72,7 +72,83 @@ body {
   opacity: 0.95;
   margin-top: 12px;
 }
+/* Hero секция */
+    .hero {
+      background: linear-gradient(135deg, #229ED9, #38BDF8);
+      color: white;
+      padding: 24px;
+      border-radius: 16px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 12px rgba(34, 158, 217, 0.2);
+      text-align: center;
+    }
 
+    :root[data-theme='dark'] .hero {
+      background: linear-gradient(135deg, #1c7ba6, #2a9dc7);
+    }
+
+   .hero-title {
+      font-size: 28px !important;
+      font-weight: 700 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.5px !important;
+      text-align: center !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      color: white !important;
+      background: none !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+    }
+    
+/* Карточка приветствия */
+    .welcome-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      border: 1px solid var(--card-border);
+      display: flex;
+      gap: 20px;
+      align-items: start;
+      transition: all 0.3s ease;
+    }
+
+    .welcome-card:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transform: translateY(-2px);
+    }
+
+    :root[data-theme='dark'] .welcome-card:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .welcome-icon {
+      font-size: 48px;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .welcome-content {
+      flex: 1;
+    }
+
+    .welcome-greeting {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .welcome-text {
+      line-height: 1.6;
+      color: var(--secondary-text);
+      margin: 0;
+    }
+
+    .welcome-text strong {
+      color: var(--text);
+    }
 /* Секции */
 .section {
   background: var(--card-bg);
