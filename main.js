@@ -151,7 +151,29 @@ function attachListeners() {
     }
   });
 }
+let currentSlideIndex = 1;
 
+function changeSlide(n) {
+  showSlide(currentSlideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlide(currentSlideIndex = n);
+}
+
+function showSlide(n) {
+  const images = document.querySelectorAll('.carousel-image');
+  const dots = document.querySelectorAll('.dot');
+  
+  if (n > images.length) currentSlideIndex = 1;
+  if (n < 1) currentSlideIndex = images.length;
+  
+  images.forEach(img => img.classList.remove('active'));
+  dots.forEach(dot => dot.classList.remove('active'));
+  
+  images[currentSlideIndex - 1].classList.add('active');
+  dots[currentSlideIndex - 1].classList.add('active');
+}
 // Запуск после DOM
 document.addEventListener('DOMContentLoaded', async () => {
   const allowed = await checkAccess(); // ждем проверки доступа
