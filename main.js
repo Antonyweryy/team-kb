@@ -174,6 +174,42 @@ function showSlide(n) {
   images[currentSlideIndex - 1].classList.add('active');
   dots[currentSlideIndex - 1].classList.add('active');
 }
+
+// Отслеживание скролла для показа топбара
+document.addEventListener('DOMContentLoaded', function() {
+  const modules = document.querySelectorAll('.module');
+  
+  modules.forEach(module => {
+    const topbar = module.querySelector('.module-topbar');
+    
+    if (topbar) {
+      module.addEventListener('scroll', function() {
+        if (module.scrollTop > 200) {
+          topbar.classList.add('visible');
+        } else {
+          topbar.classList.remove('visible');
+        }
+      });
+    }
+  });
+});
+
+// Также нужно сбрасывать скролл при закрытии модуля
+function closeModule() {
+  const activeModule = document.querySelector('.module.active');
+  if (activeModule) {
+    const topbar = activeModule.querySelector('.module-topbar');
+    if (topbar) {
+      topbar.classList.remove('visible');
+    }
+    activeModule.scrollTop = 0; // Сброс скролла
+  }
+  
+  // Остальная логика закрытия модуля
+  document.querySelectorAll('.module').forEach(m => m.classList.remove('active'));
+  document.body.classList.remove('no-scroll');
+  document.getElementById('main-content').style.display = 'block';
+}
 // Запуск после DOM
 document.addEventListener('DOMContentLoaded', async () => {
   const allowed = await checkAccess(); // ждем проверки доступа
