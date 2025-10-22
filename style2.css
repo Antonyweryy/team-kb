@@ -1332,3 +1332,51 @@ body {
 :root[data-theme='dark'] .carousel-btn:hover {
   background: #38BDF8;
 }
+/* Топбар модуля */
+.module-topbar {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 32px);
+  max-width: 400px;
+  height: 48px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1400;
+  color: var(--text);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.module-topbar.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.module-topbar-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--topbar-text);
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Тёмная тема */
+:root[data-theme='dark'] .module-topbar {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+/* Адаптация кнопки назад */
+.module.active .back-icon {
+  z-index: 1500;
+}
