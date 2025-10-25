@@ -79,6 +79,8 @@
     <li class="bonus"><a data-module="b1">Дофамин</a></li>
     <li class="bonus"><a data-module="b2">Добавки</a></li>
     <li class="bonus"><a data-module="b3">Работа мозга</a></li>
+    <li class="bonus"><a data-module="b4">Скрипты отработки возражений</a></li>
+    <li class="bonus"><a data-module="b5">Чек-лист_продающего_созвона</a></li>
   </ul>
   </div>
   <div id="M0" class="module">
@@ -1938,6 +1940,1229 @@
   </div>
   </div>
  </div>
+
+ <div id="b4" class="module">
+   <button class="back-icon" onclick="closeModule()">
+  <svg viewBox="0 0 24 24" width="24" height="24">
+    <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
+        <style> 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; background: linear-gradient(135deg, #fff5eb 0%, #fff8f0 100%); color: #333; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+        .wrapper-main { max-width: 1200px; margin: 0 auto; padding: 15px; }
+        
+        /* Hero Section */
+        .banner-top { background: linear-gradient(135deg, #ff8c42 0%, #ffa62b 100%); color: white; padding: 40px 25px; border-radius: 15px; margin-bottom: 25px; box-shadow: 0 10px 40px rgba(255, 140, 66, 0.3); text-align: center; }
+        .banner-top h1 { font-size: clamp(1.8em, 5vw, 3em); margin-bottom: 10px; font-weight: 700; line-height: 1.2; }
+        .banner-top p { font-size: clamp(1em, 3vw, 1.3em); opacity: 0.95; }
+        
+        /* Navigation */
+        .menu-sticky { background: white; padding: 15px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); position: sticky; top: 10px; z-index: 100; }
+        .menu-sticky ul { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+        .menu-sticky a { color: #ff8c42; text-decoration: none; padding: 8px 16px; border-radius: 8px; transition: all 0.3s; font-weight: 600; font-size: clamp(0.85em, 2vw, 1em); display: block; }
+        .menu-sticky a:hover, .menu-sticky a:active { background: #fff5eb; transform: translateY(-2px); }
+        
+        /* Page */
+        .content-block { background: white; padding: clamp(20px, 5vw, 50px); border-radius: 15px; margin-bottom: 25px; box-shadow: 0 5px 30px rgba(0,0,0,0.1); }
+        
+        /* Section Header */
+        .title-accent { border-left: 5px solid #ff8c42; padding-left: 15px; margin-bottom: 25px; }
+        .title-accent h2 { font-size: clamp(1.5em, 4vw, 2.2em); color: #2c3e50; margin-bottom: 8px; line-height: 1.3; }
+        
+        /* Golden Rule */
+        .highlight-primary { background: linear-gradient(135deg, #fff5eb 0%, #ffe8d6 100%); padding: clamp(20px, 4vw, 30px); border-radius: 12px; margin: 20px 0; border: 2px solid #ffa62b; }
+        .highlight-primary h3 { color: #d97d2c; font-size: clamp(1.2em, 3vw, 1.6em); margin-bottom: 12px; }
+        .highlight-primary p { font-size: clamp(1em, 2.5vw, 1.15em); color: #555; }
+        .highlight-primary strong { color: #d97d2c; }
+        
+        /* Formula */
+        .steps-container { background: linear-gradient(to right, #fff8f0, #fff5eb); padding: clamp(20px, 4vw, 35px); border-radius: 12px; margin: 20px 0; border-left: 5px solid #ffa62b; }
+        .steps-container h3 { color: #d97d2c; margin-bottom: 15px; font-size: clamp(1.2em, 3vw, 1.5em); }
+        .step-row { display: flex; align-items: start; margin-bottom: 12px; padding: 12px; background: white; border-radius: 10px; }
+        .badge-circle { background: #ff8c42; color: white; min-width: 32px; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 12px; flex-shrink: 0; font-size: 0.95em; }
+        .step-row p { font-size: clamp(0.95em, 2.5vw, 1.1em); }
+        
+        /* Objection Card */
+        .response-panel { border: 2px solid #ffe8d6; border-radius: 12px; padding: clamp(20px, 4vw, 30px); margin: 20px 0; }
+        .response-panel h3 { color: #ff8c42; font-size: clamp(1.2em, 3vw, 1.5em); margin-bottom: 15px; line-height: 1.3; }
+        
+        /* Script Block */
+        .dialogue-box { background: #f8f9fa; padding: clamp(15px, 3vw, 20px); border-left: 4px solid #ffa62b; border-radius: 8px; margin: 12px 0; }
+        .dialogue-label { font-weight: 700; color: #555; margin-bottom: 8px; font-size: clamp(0.95em, 2.5vw, 1em); }
+        .dialogue-content { font-style: italic; color: #666; line-height: 1.7; font-size: clamp(0.95em, 2.5vw, 1em); }
+        
+        /* Info Box */
+        .notice-bar { background: #fff3e0; border-left: 5px solid #ff9800; padding: clamp(15px, 3vw, 20px); border-radius: 10px; margin: 15px 0; font-size: clamp(0.95em, 2.5vw, 1em); }
+        .notice-bar strong { display: block; margin-bottom: 8px; color: #e65100; }
+        
+        /* Comparison Box */
+        .contrast-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin: 25px 0; }
+        .negative-panel, .positive-panel { border-radius: 12px; padding: clamp(18px, 3vw, 25px); }
+        .negative-panel { background: #ffebee; border: 2px solid #ef9a9a; }
+        .negative-panel h4 { color: #c62828; margin-bottom: 12px; font-size: clamp(1.1em, 2.5vw, 1.3em); }
+        .positive-panel { background: #e8f5e9; border: 2px solid #a5d6a7; }
+        .positive-panel h4 { color: #2e7d32; margin-bottom: 12px; font-size: clamp(1.1em, 2.5vw, 1.3em); }
+        .negative-panel p, .positive-panel p { font-size: clamp(0.95em, 2.5vw, 1em); line-height: 1.6; }
+        
+        /* Checklist */
+        .tasks-wrapper { background: linear-gradient(135deg, #fff8f0 0%, #ffe8d6 100%); padding: clamp(20px, 4vw, 35px); border-radius: 12px; margin: 25px 0; }
+        .task-line { background: white; padding: clamp(12px, 3vw, 18px); margin: 10px 0; border-radius: 8px; display: flex; align-items: center; }
+        .task-line input { width: 22px; height: 22px; margin-right: 12px; flex-shrink: 0; }
+        .task-line label { font-size: clamp(0.95em, 2.5vw, 1.1em); }
+        
+        /* Important Box */
+        .alert-card { background: white; padding: clamp(18px, 3vw, 25px); border-radius: 12px; margin: 15px 0; border-left: 5px solid #ff8c42; box-shadow: 0 3px 15px rgba(0,0,0,0.08); }
+        .alert-card h4 { color: #d97d2c; margin-bottom: 10px; font-size: clamp(1.1em, 2.5vw, 1.3em); }
+        .alert-card p { font-size: clamp(0.95em, 2.5vw, 1em); line-height: 1.6; color: #555; }
+        
+        /* Phrase Items */
+        .example-text { padding: clamp(12px, 3vw, 15px) clamp(15px, 3vw, 20px); border-radius: 10px; margin: 10px 0; font-size: clamp(0.95em, 2.5vw, 1.05em); }
+        .example-text.bad { background: #ffebee; color: #c62828; border-left: 4px solid #ef5350; }
+        .example-text.good { background: #e8f5e9; color: #2e7d32; border-left: 4px solid #66bb6a; }
+        
+        /* Homework */
+        .assignment-block { background: linear-gradient(135deg, #fff8f0 0%, #ffecd1 100%); padding: clamp(25px, 4vw, 40px); border-radius: 12px; margin: 25px 0; border: 3px solid #ffa62b; }
+        .assignment-row { background: white; padding: clamp(15px, 3vw, 20px); margin: 12px 0; border-radius: 10px; display: flex; align-items: start; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .marker-round { background: #ff8c42; color: white; min-width: 36px; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.1em; margin-right: 15px; flex-shrink: 0; }
+        .assignment-row p { font-size: clamp(0.95em, 2.5vw, 1.1em); padding-top: 6px; }
+        
+        /* Footer */
+        .bottom-section { background: linear-gradient(135deg, #ff8c42 0%, #ffa62b 100%); color: white; padding: clamp(25px, 4vw, 40px); border-radius: 12px; text-align: center; margin-top: 40px; }
+        .credits-flex { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .credits-flex div { font-size: clamp(0.95em, 2.5vw, 1.1em); font-weight: 600; }
+        
+        /* Mobile Specific */
+        @media (min-width: 640px) {
+            .contrast-grid { grid-template-columns: 1fr 1fr; }
+        }
+        
+        @media (max-width: 639px) {
+            .wrapper-main { padding: 10px; }
+            .banner-top { padding: 30px 20px; margin-bottom: 20px; }
+            .content-block { padding: 20px 15px; margin-bottom: 20px; }
+            .menu-sticky { padding: 12px; top: 5px; }
+            .menu-sticky a { padding: 8px 12px; font-size: 0.9em; }
+            .title-accent { padding-left: 12px; border-left-width: 4px; }
+            .step-row { flex-direction: row; }
+            .response-panel { padding: 18px; }
+            .dialogue-box { padding: 15px; }
+            .credits-flex { flex-direction: column; text-align: center; }
+        }
+        
+        /* Touch Device Optimization */
+        @media (hover: none) and (pointer: coarse) {
+            .menu-sticky a { padding: 12px 16px; min-height: 44px; display: flex; align-items: center; justify-content: center; }
+            .task-line input { width: 28px; height: 28px; }
+        }
+        
+        /* Print Styles */
+        @media print {
+            .menu-sticky { display: none; }
+            .content-block { box-shadow: none; page-break-after: always; }
+            body { background: white; }
+        }
+    </style>
+    <div class="wrapper-main">
+        <div class="banner-top">
+            <h1>Скрипты отработки возражений</h1>
+            <p>Профессиональное руководство по работе с клиентами</p>
+        </div>
+
+        <nav class="menu-sticky">
+            <ul>
+                <li><a href="#principles">Принципы</a></li>
+                <li><a href="#expensive">Дорого</a></li>
+                <li><a href="#think">Подумать</a></li>
+                <li><a href="#money">Нет денег</a></li>
+                <li><a href="#universal">Универсальная схема</a></li>
+                <li><a href="#phrases">Фразы</a></li>
+            </ul>
+        </nav>
+
+        <div class="content-block" id="principles">
+            <div class="title-accent"><h2>ПРИНЦИПЫ ОТРАБОТКИ ВОЗРАЖЕНИЙ</h2></div>
+            <div class="highlight-primary">
+                <h3>Золотое правило</h3>
+                <p><strong>Возражение = не до конца понятная ценность</strong></p>
+                <p>Ваша задача - не "продавить", а помочь клиенту увидеть ценность</p>
+            </div>
+            <div class="steps-container">
+                <h3>Формула отработки</h3>
+                <div class="step-row"><div class="badge-circle">1</div><p><strong>Присоединение</strong> - согласиться/понять</p></div>
+                <div class="step-row"><div class="badge-circle">2</div><p><strong>Аргумент</strong> - дать ценность/объяснение</p></div>
+                <div class="step-row"><div class="badge-circle">3</div><p><strong>Вопрос/действие</strong> - закрыть возражение</p></div>
+            </div>
+        </div>
+
+        <div class="content-block" id="expensive">
+            <div class="title-accent"><h2>ВОЗРАЖЕНИЕ: "ДОРОГО"</h2></div>
+            
+            <div class="response-panel">
+                <h3>Вариант 1: Вернуться к ценности</h3>
+                <div class="dialogue-box">
+                    <div class="dialogue-label">Присоединение:</div>
+                    <div class="dialogue-content">"Понимаю, что сумма кажется значительной"</div>
+                </div>
+                <div class="dialogue-box">
+                    <div class="dialogue-label">Аргумент:</div>
+                    <div class="dialogue-content">"Давайте посмотрим на это как на инвестицию. При вашем среднем чеке [сумма], сайт окупится через 7-10 клиентов. То есть буквально за [период времени]. После этого он начнет приносить чистую прибыль, работая на вас 24/7"</div>
+                </div>
+                <div class="dialogue-box">
+                    <div class="dialogue-label">Вопрос:</div>
+                    <div class="dialogue-content">"Если посмотреть с этой стороны, как вам?"</div>
+                </div>
+            </div>
+
+            <div class="response-panel">
+                <h3>Вариант 2: Оптимизация структуры</h3>
+                <div class="dialogue-box">
+                    <div class="dialogue-label">Присоединение:</div>
+                    <div class="dialogue-content">"Понимаю, что бюджет ограничен"</div>
+                </div>
+                <div class="dialogue-box">
+                    <div class="dialogue-label">Аргумент:</div>
+                    <div class="dialogue-content">"Смотрите, мы можем вернуться к структуре и оптимизировать ее без потери качества воронки продаж"</div>
+                </div>
+            </div>
+
+            <div class="response-panel">
+                <h3>Вариант 3: Формат оплаты</h3>
+                <div class="notice-bar"><strong>Когда использовать:</strong> Если клиенту все нравится, но сумма за раз большая</div>
+                <div class="dialogue-box">
+                    <div class="dialogue-label">Предложение:</div>
+                    <div class="dialogue-content">"Обычно на проектах от 100 тысяч мы делим оплату на три части: 30-40-30"</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-block" id="think">
+            <div class="title-accent"><h2>ВОЗРАЖЕНИЕ: "НУЖНО ПОДУМАТЬ"</h2></div>
+            
+            <div class="contrast-grid">
+                <div class="negative-panel">
+                    <h4>❌ Плохо:</h4>
+                    <p>"Хорошо, подумайте и напишите мне"</p>
+                </div>
+                <div class="positive-panel">
+                    <h4>✅ Правильно:</h4>
+                    <p>"Конечно, это важное решение. Подскажите, что конкретно хотелось бы обдумать?"</p>
+                </div>
+            </div>
+
+            <div class="response-panel">
+                <h3>Вариант 1: Сомнения в результате</h3>
+                <div class="dialogue-box">
+                    <div class="dialogue-content">"Понимаю ваши сомнения. Давайте вернемся к вашей ситуации. Вы говорили, что [повторить проблему]. Сайт решает это через [объяснить как]"</div>
+                </div>
+            </div>
+
+            <div class="response-panel">
+                <h3>Вариант 2: Нужно посоветоваться</h3>
+                <div class="dialogue-box">
+                    <div class="dialogue-content">"Отлично, что хотите обсудить это! Подскажите, какие моменты будут ключевыми при обсуждении?"</div>
+                </div>
+                <div class="notice-bar">
+                    <strong>Вариант с бронью:</strong> "Вы можете внести символическую бронь 3000₽, я за вами место закреплю. Если решите не работать - верну без вопросов"
+                </div>
+            </div>
+        </div>
+
+        <div class="content-block" id="money">
+            <div class="title-accent"><h2>ВОЗРАЖЕНИЕ: "НЕТ ДЕНЕГ СЕЙЧАС"</h2></div>
+            
+            <div class="response-panel">
+                <h3>Если действительно нет бюджета</h3>
+                <div class="dialogue-box">
+                    <div class="dialogue-content">"Понимаю. Подскажите, когда примерно планируете бюджет выделить? Через месяц? Два?"</div>
+                </div>
+                <div class="dialogue-box">
+                    <div class="dialogue-content">"Я сейчас фиксирую для вас структуру и текущую стоимость. Когда появится бюджет - возвращайтесь"</div>
+                </div>
+            </div>
+
+            <div class="response-panel">
+                <h3>Если бюджет есть, но хотят дешевле</h3>
+                <div class="alert-card">
+                    <h4>Вариант 1:</h4>
+                    <p>Оптимизировать структуру - убрать неприоритетные блоки</p>
+                </div>
+                <div class="alert-card">
+                    <h4>Вариант 2:</h4>
+                    <p>Сделать сайт поэтапно. Сначала базовый вариант, потом доделать</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-block" id="universal">
+            <div class="title-accent"><h2>УНИВЕРСАЛЬНАЯ СХЕМА</h2></div>
+            
+            <div class="steps-container">
+                <h3>Шаг 1: Присоединение</h3>
+                <p>Покажите, что вы слышите и понимаете клиента</p>
+            </div>
+            
+            <div class="steps-container">
+                <h3>Шаг 2: Уточнение</h3>
+                <p>Задайте вопрос, чтобы понять истинную причину</p>
+            </div>
+            
+            <div class="steps-container">
+                <h3>Шаг 3: Аргументация</h3>
+                <p>Дайте ценность, покажите выгоду</p>
+            </div>
+            
+            <div class="steps-container">
+                <h3>Шаг 4: Вопрос или действие</h3>
+                <p>Закройте возражение</p>
+            </div>
+
+            <div class="title-accent" style="margin-top: 50px;"><h2>ЧЕК-ЛИСТ</h2></div>
+            <div class="tasks-wrapper">
+                <div class="task-line"><input type="checkbox"> <label>Не паниковать</label></div>
+                <div class="task-line"><input type="checkbox"> <label>Присоединиться к клиенту</label></div>
+                <div class="task-line"><input type="checkbox"> <label>Уточнить истинную причину</label></div>
+                <div class="task-line"><input type="checkbox"> <label>Дать аргументацию через ценность</label></div>
+                <div class="task-line"><input type="checkbox"> <label>Задать закрывающий вопрос</label></div>
+                <div class="task-line"><input type="checkbox"> <label>Не давать скидку сразу</label></div>
+                <div class="task-line"><input type="checkbox"> <label>Предложить альтернативу</label></div>
+                <div class="task-line"><input type="checkbox"> <label>Зафиксировать договоренность</label></div>
+            </div>
+        </div>
+
+        <div class="content-block" id="phrases">
+            <div class="title-accent"><h2>ФРАЗЫ</h2></div>
+            
+            <h3 style="color: #c62828; margin: 20px 0;">❌ НЕЛЬЗЯ ГОВОРИТЬ:</h3>
+            <div class="example-text bad">"Ну как хотите"</div>
+            <div class="example-text bad">"Тогда ищите дешевле"</div>
+            <div class="example-text bad">"Я же вам все объяснил"</div>
+            <div class="example-text bad">"Вы не понимаете"</div>
+
+            <h3 style="color: #2e7d32; margin: 30px 0 20px 0;">✅ РАБОТАЮТ:</h3>
+            <div class="example-text good">"Понимаю вас"</div>
+            <div class="example-text good">"Давайте разберемся"</div>
+            <div class="example-text good">"Хороший вопрос"</div>
+            <div class="example-text good">"Вижу вашу ситуацию"</div>
+
+            <div class="title-accent" style="margin-top: 50px;"><h2>ВАЖНО ПОМНИТЬ</h2></div>
+            
+            <div class="alert-card">
+                <h4>1. Возражение - это не отказ</h4>
+                <p>Это просто вопрос, который нужно закрыть</p>
+            </div>
+            
+            <div class="alert-card">
+                <h4>2. Возражение - это хорошо</h4>
+                <p>Значит клиент вовлечен и думает о покупке</p>
+            </div>
+            
+            <div class="alert-card">
+                <h4>3. Не все возражения истинные</h4>
+                <p>Часто за "дорого" стоит "не вижу ценности"</p>
+            </div>
+            
+            <div class="alert-card">
+                <h4>4. Ваша задача - не продать любой ценой</h4>
+                <p>А помочь клиенту принять правильное решение</p>
+            </div>
+
+            <div class="title-accent" style="margin-top: 50px;"><h2>ДОМАШНЕЕ ЗАДАНИЕ</h2></div>
+            <div class="assignment-block">
+                <div class="assignment-row"><div class="marker-round">1</div><p>Выпишите 5 возражений, которые встречаются чаще всего</p></div>
+                <div class="assignment-row"><div class="marker-round">2</div><p>Напишите скрипты на каждое по формуле выше</p></div>
+                <div class="assignment-row"><div class="marker-round">3</div><p>Отрепетируйте их вслух</p></div>
+                <div class="assignment-row"><div class="marker-round">4</div><p>Используйте на созвонах</p></div>
+                <div class="assignment-row"><div class="marker-round">5</div><p>Анализируйте результаты</p></div>
+                <div class="assignment-row"><div class="marker-round">6</div><p>Корректируйте скрипты</p></div>
+            </div>
+        </div>
+
+        <div class="bottom-section">
+            <div class="credits-flex">
+                <div>Больше, чем Таплинк</div>
+                <div>Влад Ивкин</div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <div id="b5" class="module">
+   <button class="back-icon" onclick="closeModule()">
+  <svg viewBox="0 0 24 24" width="24" height="24">
+    <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; background: linear-gradient(135deg, #fff5eb 0%, #fff8f0 100%); color: #333; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+        .outer-wrap { max-width: 1200px; margin: 0 auto; padding: 15px; }
+        
+        /* Hero */
+        .intro-section { background: linear-gradient(135deg, #ff8c42 0%, #ffa62b 100%); color: white; padding: 40px 25px; border-radius: 15px; margin-bottom: 25px; box-shadow: 0 10px 40px rgba(255, 140, 66, 0.3); text-align: center; }
+        .intro-section h1 { font-size: clamp(1.6em, 5vw, 2.8em); margin-bottom: 10px; font-weight: 700; line-height: 1.2; }
+        .intro-section p { font-size: clamp(1em, 3vw, 1.2em); opacity: 0.95; }
+        
+        /* Navigation */
+        .links-bar { background: white; padding: 15px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); position: sticky; top: 10px; z-index: 100; }
+        .links-bar ul { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+        .links-bar a { color: #ff8c42; text-decoration: none; padding: 8px 14px; border-radius: 8px; transition: all 0.3s; font-weight: 600; font-size: clamp(0.8em, 2vw, 0.95em); display: block; }
+        .links-bar a:hover, .links-bar a:active { background: #fff5eb; }
+        
+        /* Page */
+        .canvas-area { background: white; padding: clamp(20px, 5vw, 45px); border-radius: 15px; margin-bottom: 25px; box-shadow: 0 5px 30px rgba(0,0,0,0.1); }
+        
+        /* Section Header */
+        .heading-stripe { border-left: 5px solid #ff8c42; padding-left: 15px; margin-bottom: 25px; margin-top: 30px; }
+        .heading-stripe h2 { font-size: clamp(1.4em, 4vw, 2em); color: #2c3e50; margin-bottom: 5px; line-height: 1.3; }
+        .heading-stripe .time { font-size: clamp(0.9em, 2.5vw, 1.1em); color: #ff8c42; font-weight: 600; }
+        
+        /* Stage Badge */
+        .phase-label { display: inline-block; background: linear-gradient(135deg, #ff8c42, #ffa62b); color: white; padding: 8px 20px; border-radius: 25px; font-weight: 700; font-size: clamp(0.9em, 2.5vw, 1.1em); margin-bottom: 20px; }
+        
+        /* Checklist */
+        .action-list { margin: 20px 0; }
+        .action-entry { background: #f8f9fa; padding: clamp(12px, 3vw, 15px); margin: 10px 0; border-radius: 10px; display: flex; align-items: start; border-left: 4px solid #ffa62b; transition: all 0.3s; }
+        .action-entry:hover { background: #fff5eb; transform: translateX(5px); }
+        .action-entry input[type="checkbox"] { width: 22px; height: 22px; margin-right: 12px; margin-top: 2px; flex-shrink: 0; cursor: pointer; accent-color: #ff8c42; }
+        .action-entry label { font-size: clamp(0.95em, 2.5vw, 1.05em); cursor: pointer; line-height: 1.5; }
+        
+        /* Info Box */
+        .details-panel { background: linear-gradient(135deg, #fff5eb 0%, #ffe8d6 100%); padding: clamp(18px, 3vw, 25px); border-radius: 12px; margin: 20px 0; border: 2px solid #ffa62b; }
+        .details-panel h3 { color: #d97d2c; font-size: clamp(1.1em, 3vw, 1.4em); margin-bottom: 12px; }
+        .details-panel h4 { color: #d97d2c; font-size: clamp(1em, 2.5vw, 1.2em); margin: 15px 0 10px 0; }
+        .details-panel p, .details-panel ul { font-size: clamp(0.95em, 2.5vw, 1.05em); color: #555; line-height: 1.7; }
+        .details-panel ul { margin-left: 20px; margin-top: 10px; }
+        .details-panel li { margin: 8px 0; }
+        .details-panel strong { color: #d97d2c; }
+        
+        /* Example Box */
+        .demo-snippet { background: #e3f2fd; border-left: 5px solid #2196f3; padding: clamp(15px, 3vw, 20px); border-radius: 10px; margin: 15px 0; font-style: italic; }
+        .demo-snippet strong { color: #1565c0; display: block; margin-bottom: 8px; font-style: normal; }
+        .demo-snippet p { font-size: clamp(0.95em, 2.5vw, 1em); color: #555; }
+        
+        /* Good/Bad Boxes */
+        .dual-view { display: grid; grid-template-columns: 1fr; gap: 15px; margin: 20px 0; }
+        .success-container { background: #e8f5e9; border: 2px solid #66bb6a; border-radius: 12px; padding: clamp(15px, 3vw, 20px); }
+        .success-container h4 { color: #2e7d32; margin-bottom: 10px; font-size: clamp(1em, 2.5vw, 1.2em); }
+        .fail-container { background: #ffebee; border: 2px solid #ef5350; border-radius: 12px; padding: clamp(15px, 3vw, 20px); }
+        .fail-container h4 { color: #c62828; margin-bottom: 10px; font-size: clamp(1em, 2.5vw, 1.2em); }
+        .success-container ul, .fail-container ul { margin-left: 20px; }
+        .success-container li, .fail-container li { margin: 8px 0; font-size: clamp(0.95em, 2.5vw, 1em); }
+        
+        /* Warning Box */
+        .caution-block { background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border: 3px solid #ff9800; padding: clamp(20px, 4vw, 25px); border-radius: 12px; margin: 25px 0; }
+        .caution-block h3 { color: #e65100; font-size: clamp(1.2em, 3vw, 1.5em); margin-bottom: 12px; }
+        .caution-block ul { margin-left: 20px; margin-top: 10px; }
+        .caution-block li { color: #555; font-size: clamp(0.95em, 2.5vw, 1.05em); margin: 8px 0; }
+        
+        /* Quote Box */
+        .wisdom-card { background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-left: 5px solid #4caf50; padding: clamp(20px, 4vw, 30px); border-radius: 12px; margin: 25px 0; font-style: italic; text-align: center; }
+        .wisdom-card p { font-size: clamp(1.05em, 3vw, 1.3em); color: #2e7d32; font-weight: 600; line-height: 1.6; margin: 10px 0; }
+        
+        /* Error List */
+        .mistakes-box { background: #ffebee; padding: clamp(20px, 4vw, 25px); border-radius: 12px; margin: 20px 0; border-left: 5px solid #f44336; }
+        .mistakes-box h3 { color: #c62828; margin-bottom: 15px; font-size: clamp(1.2em, 3vw, 1.4em); }
+        .mistake-point { display: flex; align-items: start; margin: 10px 0; font-size: clamp(0.95em, 2.5vw, 1.05em); color: #555; }
+        .mistake-point::before { content: "❌"; margin-right: 10px; flex-shrink: 0; }
+        
+        /* Rules Box */
+        .guidelines-section { background: white; border: 2px solid #ffe8d6; border-radius: 12px; padding: clamp(18px, 3vw, 25px); margin: 20px 0; box-shadow: 0 3px 15px rgba(0,0,0,0.08); }
+        .guidelines-section h3 { color: #ff8c42; font-size: clamp(1.1em, 3vw, 1.3em); margin-bottom: 15px; }
+        .guideline-piece { margin: 15px 0; padding-bottom: 15px; border-bottom: 1px solid #f0f0f0; }
+        .guideline-piece:last-child { border-bottom: none; padding-bottom: 0; }
+        .digit-icon { display: inline-block; background: #ff8c42; color: white; width: 28px; height: 28px; border-radius: 50%; text-align: center; line-height: 28px; font-weight: bold; margin-right: 10px; font-size: 0.9em; }
+        .guideline-heading { font-weight: 700; color: #333; font-size: clamp(1em, 2.5vw, 1.1em); margin-bottom: 8px; }
+        .guideline-text { color: #666; font-size: clamp(0.95em, 2.5vw, 1em); margin-left: 38px; line-height: 1.6; }
+        .guideline-text ul { margin-left: 20px; margin-top: 8px; }
+        
+        /* Footer */
+        .end-banner { background: linear-gradient(135deg, #ff8c42 0%, #ffa62b 100%); color: white; padding: clamp(25px, 4vw, 40px); border-radius: 12px; text-align: center; margin-top: 40px; }
+        .author-info { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .author-info div { font-size: clamp(0.95em, 2.5vw, 1.1em); font-weight: 600; }
+        
+        /* Mobile */
+        @media (min-width: 640px) {
+            .dual-view { grid-template-columns: 1fr 1fr; }
+        }
+        
+        @media (max-width: 639px) {
+            .outer-wrap { padding: 10px; }
+            .intro-section { padding: 30px 20px; }
+            .canvas-area { padding: 20px 15px; }
+            .links-bar { padding: 12px; }
+            .author-info { flex-direction: column; }
+        }
+        
+        @media (hover: none) and (pointer: coarse) {
+            .links-bar a { padding: 12px 16px; min-height: 44px; display: flex; align-items: center; justify-content: center; }
+            .action-entry input { width: 28px; height: 28px; }
+        }
+        
+        @media print {
+            .links-bar { display: none; }
+            .canvas-area { box-shadow: none; page-break-after: always; }
+            body { background: white; }
+        }
+    </style>
+</head>
+<body>
+    <div class="outer-wrap">
+        <div class="intro-section">
+            <h1>Чек-лист структуры продающего созвона</h1>
+            <p>Пошаговое руководство для проведения эффективных встреч с клиентами</p>
+        </div>
+
+        <nav class="links-bar">
+            <ul>
+                <li><a href="#before">До созвона</a></li>
+                <li><a href="#stage1">Приветствие</a></li>
+                <li><a href="#stage2">Вопросы</a></li>
+                <li><a href="#stage3">Референсы</a></li>
+                <li><a href="#stage4">Структура</a></li>
+                <li><a href="#stage5">Этапы</a></li>
+                <li><a href="#stage6">Стоимость</a></li>
+                <li><a href="#stage7">Возражения</a></li>
+                <li><a href="#stage8">Закрытие</a></li>
+                <li><a href="#rules">Правила</a></li>
+            </ul>
+        </nav>
+
+        <div class="canvas-area" id="before">
+            <div class="heading-stripe">
+                <h2>ДО СОЗВОНА</h2>
+            </div>
+
+            <h3 style="color: #ff8c42; margin: 25px 0 15px 0; font-size: clamp(1.2em, 3vw, 1.5em);">Техническая подготовка</h3>
+            <div class="action-list">
+                <div class="action-entry">
+                    <input type="checkbox" id="tech1">
+                    <label for="tech1">Проверить качество связи и интернета</label>
+                </div>
+                <div class="action-entry">
+                    <input type="checkbox" id="tech2">
+                    <label for="tech2">Проверить камеру и освещение</label>
+                </div>
+                <div class="action-entry">
+                    <input type="checkbox" id="tech3">
+                    <label for="tech3">Проверить звук микрофона</label>
+                </div>
+                <div class="action-entry">
+                    <input type="checkbox" id="tech4">
+                    <label for="tech4">Закрыть лишние приложения</label>
+                </div>
+                <div class="action-entry">
+                    <input type="checkbox" id="tech5">
+                    <label for="tech5">Подготовить демонстрацию экрана</label>
+                </div>
+            </div>
+
+            <h3 style="color: #ff8c42; margin: 30px 0 15px 0; font-size: clamp(1.2em, 3vw, 1.5em);">Контентная подготовка</h3>
+            <div class="action-list">
+                <div class="action-entry">
+                    <input type="checkbox" id="cont1">
+                    <label for="cont1">Изучить профиль клиента в соцсетях</label>
+                </div>
+                <div class="action-entry">
+                    <input type="checkbox" id="cont2">
+                    <label for="cont2">Проанализировать 3-5 конкурентов клиента</label>
+                </div>
+                <div class="action-entry">
+                    <input type="checkbox" id="cont3">
+                    <label for="cont3">Подготовить референсы в разных стилях (минимум 3-4)</label>
+                </div>
+                <div class="action-entry">
+                    <input type="checkbox" id="cont4">
+                    <label for="cont4">Создать структуру под клиента в Figma</label>
+                </div>
+                <div class="action-entry">
+                    <input type="checkbox" id="cont5">
+                    <label for="cont5">Подготовить примеры: шаблон vs дизайнерский</label>
+                </div>
+                <div class="action-entry">
+                    <input type="checkbox" id="cont6">
+                    <label for="cont6">Заготовить презентацию о себе (нишевую)</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="canvas-area" id="stage1">
+            <span class="phase-label">ЭТАП 1</span>
+            <div class="heading-stripe">
+                <h2>ПРИВЕТСТВИЕ И ПРЕДСТАВЛЕНИЕ</h2>
+                <p class="time">⏱️ 2-3 минуты</p>
+            </div>
+
+            <h3 style="color: #ff8c42; margin: 25px 0 15px 0; font-size: clamp(1.2em, 3vw, 1.5em);">Установление контакта</h3>
+            <div class="action-list">
+                <div class="action-entry">
+                    <input type="checkbox" id="contact1">
+                    <label for="contact1">Поздороваться тепло и естественно</label>
+                </div>
+                <div class="action-entry">
+                    <input type="checkbox" id="contact2">
+                    <label for="contact2">Уточнить, слышно/видно ли</label>
+                </div>
+                <div class="action-entry">
+                    <input type="checkbox" id="contact3">
+                    <label for="contact3">Спросить разрешение на запись</label>
+                </div>
+            </div>
+
+            <div class="details-panel">
+                <h3>Представление (ОБЯЗАТЕЛЬНО)</h3>
+                <h4>Формула:</h4>
+                <p><strong>Имя + Специализация + Результат для клиента</strong></p>
+                
+                <h4 style="margin-top: 20px;">Ключевые элементы:</h4>
+                <ul>
+                    <li>Нишевание (под конкретную нишу клиента)</li>
+                    <li>УТП/отстройка от конкурентов</li>
+                    <li>Фокус на результате, а не процессе</li>
+                </ul>
+            </div>
+
+            <div class="demo-snippet">
+                <strong>Пример:</strong>
+                <p>"Меня зовут [Имя], я создаю сайты с продающей структурой для [ниша клиента]. Помогаю [конкретный результат: увеличить конверсию/автоматизировать запись/повысить количество заявок]"</p>
+            </div>
+
+            <h3 style="color: #ff8c42; margin: 30px 0 15px 0; font-size: clamp(1.2em, 3vw, 1.5em);">План созвона</h3>
+            <div class="action-list">
+                <div class="action-entry">
+                    <input type="checkbox" id="plan1">
+                    <label for="plan1">Кратко объяснить структуру встречи</label>
+                </div>
+                <div class="action-entry">
+                    <input type="checkbox" id="plan2">
+                    <label for="plan2">Получить согласие клиента</label>
+                </div>
+            </div>
+
+            <div class="details-panel">
+                <h4>Структура созвона:</h4>
+                <ul>
+                    <li>Несколько вопросов о текущей ситуации</li>
+                    <li>Показать структуру и референсы</li>
+                    <li>Этапы работы и стоимость</li>
+                    <li>Ответы на вопросы</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="canvas-area" id="stage2">
+            <span class="phase-label">ЭТАП 2</span>
+            <div class="heading-stripe">
+                <h2>ВЫЯВЛЕНИЕ ПОТРЕБНОСТЕЙ</h2>
+                <p class="time">⏱️ 10-15 минут</p>
+            </div>
+
+            <div class="details-panel">
+                <h3>Принципы вопросов</h3>
+                <ul>
+                    <li>Делать подводки к вопросам (объяснять ЗАЧЕМ спрашиваешь)</li>
+                    <li>Комментировать каждый ответ клиента</li>
+                    <li>Вести диалог, а не допрос</li>
+                    <li>Говорить простым языком (без УТП, конверсий, кликабельности)</li>
+                </ul>
+            </div>
+
+            <h3 style="color: #ff8c42; margin: 30px 0 15px 0; font-size: clamp(1.2em, 3vw, 1.5em);">Обязательные вопросы</h3>
+
+            <div class="details-panel">
+                <h4>1. О текущем продвижении</h4>
+                <ul>
+                    <li>Откуда сейчас приходят клиенты?</li>
+                    <li>Какие каналы используете?</li>
+                    <li>Был ли опыт с рекламой/сайтами раньше?</li>
+                </ul>
+
+                <h4>2. О целях и задачах</h4>
+                <ul>
+                    <li>Какую главную задачу хотите решить с помощью сайта?</li>
+                    <li>Что хотели бы улучшить/автоматизировать?</li>
+                    <li>Какие есть узкие места в текущей воронке?</li>
+                </ul>
+
+                <h4>3. О материалах</h4>
+                <ul>
+                    <li>Есть ли готовые тексты/фото/видео?</li>
+                    <li>Видели ли примеры сайтов, которые нравятся?</li>
+                    <li>Какие есть пожелания по стилю/цветам?</li>
+                </ul>
+
+                <h4>4. О бюджете (опционально)</h4>
+                <ul>
+                    <li>Какой бюджет планировали?</li>
+                    <li>Сколько стоил предыдущий сайт (если был)?</li>
+                </ul>
+            </div>
+
+            <h3 style="color: #ff8c42; margin: 30px 0 15px 0; font-size: clamp(1.2em, 3vw, 1.5em);">Резюмирование</h3>
+            <div class="action-list">
+                <div class="action-entry">
+                    <input type="checkbox" id="resume1">
+                    <label for="resume1">Подвести черту после вопросов</label>
+                </div>
+                <div class="action-entry">
+                    <input type="checkbox" id="resume2">
+                    <label for="resume2">Повторить ключевые запросы клиента своими словами</label>
+                </div>
+                <div class="action-entry">
+                    <input type="checkbox" id="resume3">
+                    <label for="resume3">Получить подтверждение: "Все верно?"</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="canvas-area" id="stage3">
+            <span class="phase-label">ЭТАП 3</span>
+            <div class="heading-stripe">
+                <h2>ПРЕЗЕНТАЦИЯ РЕФЕРЕНСОВ</h2>
+                <p class="time">⏱️ 3-5 минут</p>
+            </div>
+
+            <div class="details-panel">
+                <h3>Цель этапа</h3>
+                <p>Показать разницу между шаблонами и дизайнерскими сайтами, закрыть возражение про кейсы</p>
+            </div>
+
+            <h3 style="color: #ff8c42; margin: 25px 0 15px 0; font-size: clamp(1.2em, 3vw, 1.5em);">Что показывать</h3>
+            <div class="action-list">
+                <div class="action-entry">
+                    <input type="checkbox" id="ref1">
+                    <label for="ref1">Шаблонные сайты (с объяснением минусов)</label>
+                </div>
+                <div class="action-entry">
+                    <input type="checkbox" id="ref2">
+                    <label for="ref2">Дизайнерские сайты (с объяснением плюсов)</label>
+                </div>
+                <div class="action-entry">
+                    <input type="checkbox" id="ref3">
+                    <label for="ref3">Примеры конкретно в нише клиента (3-4 в разных стилях)</label>
+                </div>
+            </div>
+
+            <h3 style="color: #ff8c42; margin: 30px 0 15px 0; font-size: clamp(1.2em, 3vw, 1.5em);">Как показывать</h3>
+            <div class="action-list">
+                <div class="action-entry">
+                    <input type="checkbox" id="how1">
+                    <label for="how1">Использовать расширение GoFullPage для скриншотов</label>
+                </div>
+                <div class="action-entry">
+                    <input type="checkbox" id="how2">
+                    <label for="how2">НЕ углубляться в детали блоков</label>
+                </div>
+                <div class="action-entry">
+                    <input type="checkbox" id="how3">
+                    <label for="how3">НЕ начинать обсуждение "а вот тут давайте..."</label>
+                </div>
+                <div class="action-entry">
+                    <input type="checkbox" id="how4">
+                    <label for="how4">Показать разнообразие стилей (темный/светлый)</label>
+                </div>
+            </div>
+
+            <div class="demo-snippet">
+                <strong>Формулировка:</strong>
+                <p>"Это примеры того, как может выглядеть сайт в вашей нише. Здесь более [описание], здесь [описание]. Сейчас покажу структуру, которую подготовил специально под вас"</p>
+            </div>
+        </div>
+
+        <div class="canvas-area" id="stage4">
+            <span class="phase-label">ЭТАП 4</span>
+            <div class="heading-stripe">
+                <h2>ПРЕЗЕНТАЦИЯ СТРУКТУРЫ</h2>
+                <p class="time">⏱️ 15-20 минут</p>
+            </div>
+
+            <div class="details-panel">
+                <h3>Общие правила</h3>
+                <ul>
+                    <li>Объяснять каждый блок через ПОЛЬЗУ для клиента</li>
+                    <li>Говорить простым языком</li>
+                    <li>После каждого блока: "Все понятно?"</li>
+                    <li>Комментировать пожелания клиента</li>
+                </ul>
+            </div>
+
+            <div class="details-panel">
+                <h3>Структура презентации блока</h3>
+                <ul>
+                    <li><strong>Название блока</strong> - что это</li>
+                    <li><strong>Цель блока</strong> - зачем он нужен клиенту</li>
+                    <li><strong>Что в него входит</strong> - содержание</li>
+                    <li><strong>Как это поможет</strong> - результат для бизнеса</li>
+                </ul>
+            </div>
+
+            <div class="demo-snippet">
+                <strong>Пример:</strong>
+                <p>"Следующий блок - Отзывы. Он нужен для того, чтобы у людей было доверие к вам. Разместим отзывы в формате скриншотов и видео. Это закроет сомнения клиентов и повысит конверсию в запись"</p>
+            </div>
+
+            <h3 style="color: #ff8c42; margin: 30px 0 15px 0; font-size: clamp(1.2em, 3vw, 1.5em);">После презентации структуры</h3>
+            <div class="action-list">
+                <div class="action-entry">
+                    <input type="checkbox" id="after1">
+                    <label for="after1">Спросить: "Что-то хотите добавить/изменить?"</label>
+                </div>
+                <div class="action-entry">
+                    <input type="checkbox" id="after2">
+                    <label for="after2">Зафиксировать все пожелания</label>
+                </div>
+                <div class="action-entry">
+                    <input type="checkbox" id="after3">
+                    <label for="after3">Перейти к этапам работы</label>
+                </div>
+            </div>
+        </div>
+        <div class="canvas-area" id="stage5">
+            <span class="phase-label">ЭТАП 5</span>
+            <div class="heading-stripe">
+                <h2>ЭТАПЫ РАБОТЫ И КОМАНДА</h2>
+                <p class="time">⏱️ 5-7 минут</p>
+            </div>
+
+            <h3 style="color: #ff8c42; margin: 25px 0 15px 0; font-size: clamp(1.2em, 3vw, 1.5em);">Что рассказать</h3>
+            <div class="action-list">
+                <div class="action-entry">
+                    <input type="checkbox" id="work1">
+                    <label for="work1">Из каких этапов состоит работа</label>
+                </div>
+                <div class="action-entry">
+                    <input type="checkbox" id="work2">
+                    <label for="work2">Сроки каждого этапа</label>
+                </div>
+                <div class="action-entry">
+                    <input type="checkbox" id="work3">
+                    <label for="work3">Кто в команде за что отвечает</label>
+                </div>
+                <div class="action-entry">
+                    <input type="checkbox" id="work4">
+                    <label for="work4">Как происходит коммуникация</label>
+                </div>
+            </div>
+
+            <div class="details-panel">
+                <h3>Лучше показывать, а не рассказывать</h3>
+                <ul>
+                    <li>Показать пример таблицы с референсами</li>
+                    <li>Показать пример прототипа</li>
+                    <li>Показать примеры главных экранов в разных вариантах</li>
+                    <li>Показать, как выглядят заявки на платформе</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Правило:</strong> "Не рассказывай - показывай"</p>
+            </div>
+        </div>
+
+        <div class="canvas-area" id="stage6">
+            <span class="phase-label">ЭТАП 6</span>
+            <div class="heading-stripe">
+                <h2>СТОИМОСТЬ И ОПЛАТА</h2>
+                <p class="time">⏱️ 7-10 минут</p>
+            </div>
+
+            <div class="caution-block">
+                <h3>⚠️ КРИТИЧНО: Не сливать этот этап!</h3>
+                <p style="margin-top: 10px;"><strong>Признаки слива:</strong></p>
+                <ul>
+                    <li>Ускорение речи</li>
+                    <li>Снижение интонации</li>
+                    <li>Закрытая поза</li>
+                    <li>Дрожь в голосе</li>
+                    <li>Извиняющийся тон</li>
+                </ul>
+            </div>
+
+            <div class="details-panel">
+                <h3>Правильная подача стоимости</h3>
+                
+                <h4>1. Напомнить, что такое блок</h4>
+                <ul>
+                    <li>Вернуться к структуре</li>
+                    <li>Показать разделение на блоки</li>
+                    <li>Объяснить, что в стоимость входит</li>
+                </ul>
+
+                <h4>2. Назвать стоимость блока ПОСЛЕ ценности</h4>
+                <p>"Стоимость одного блока под ключ - вместе с продающими текстами, индивидуальным дизайном и версткой - составляет [сумма]"</p>
+
+                <h4>3. Посчитать общую стоимость</h4>
+                <ul>
+                    <li>Пересчитать блоки: 1, 2, 3...</li>
+                    <li>Назвать итоговую сумму четко и спокойно</li>
+                </ul>
+
+                <h4>4. Объяснить формат оплаты</h4>
+                <p><strong>Вариант 1 (Рекомендуемый):</strong></p>
+                <p>"Работаю по формату 50 на 50"</p>
+                <ul>
+                    <li>Первые 50% - [что входит]</li>
+                    <li>Вторые 50% - [что входит]</li>
+                </ul>
+                <p style="margin-top: 10px;"><strong>Вариант 2 (По запросу):</strong></p>
+                <p>Если клиент просит разбить - тогда предложить 30-40-30</p>
+            </div>
+
+            <div class="caution-block">
+                <h3>5. ОБЯЗАТЕЛЬНО задать вопрос</h3>
+                
+                <div class="dual-view" style="margin-top: 15px;">
+                    <div class="fail-container">
+                        <h4>❌ НЕ ГОВОРИТЬ:</h4>
+                        <ul>
+                            <li>"Комфортно ли вам?"</li>
+                            <li>"Устраивает ли вас?"</li>
+                        </ul>
+                    </div>
+                    <div class="success-container">
+                        <h4>✅ ПРАВИЛЬНО:</h4>
+                        <ul>
+                            <li>"Все ли нравится, все ли понятно по условиям?"</li>
+                            <li>"Что скажете?"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="details-panel">
+                <h3>6. Пауза и ожидание ответа</h3>
+                <p><strong>ВАЖНО:</strong></p>
+                <ul>
+                    <li>Замолчать после вопроса</li>
+                    <li>Не компенсировать неуверенность потоком слов</li>
+                    <li>Дождаться реакции клиента</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="canvas-area" id="stage7">
+            <span class="phase-label">ЭТАП 7</span>
+            <div class="heading-stripe">
+                <h2>ОТРАБОТКА ВОЗРАЖЕНИЙ</h2>
+            </div>
+
+            <div class="success-container">
+                <h4>✅ Если клиент согласен</h4>
+                <ul>
+                    <li>НЕ продолжать продавать</li>
+                    <li>Перейти к оплате</li>
+                    <li>Назвать сумму и способ оплаты</li>
+                    <li>Обозначить следующие шаги</li>
+                </ul>
+            </div>
+
+            <div class="details-panel" style="margin-top: 25px;">
+                <h3>Если возражение "дорого"</h3>
+                
+                <h4>1. Не делать скидку сразу</h4>
+                
+                <h4>2. Предложить оптимизацию структуры</h4>
+                <p>"Смотрите, если бюджет ограничен, можем вернуться к структуре. Например, этот блок можем совместить с этим без потери качества. Тогда получится [новая сумма]"</p>
+                
+                <h4>3. Изменить формат оплаты (крайний случай)</h4>
+            </div>
+
+            <div class="details-panel">
+                <h3>Если "нужно подумать"</h3>
+                
+                <h4>1. Выяснить истинную причину</h4>
+                <p>"Подскажите, что конкретно хотелось бы обдумать? Может, я смогу сейчас прояснить?"</p>
+                
+                <h4>2. Если реально нужно время (загруженность)</h4>
+                <ul>
+                    <li>Взять бронь 3000-5000₽</li>
+                    <li>Обосновать бронь (начнете готовить референсы, бриф)</li>
+                    <li>Сказать, что бронь входит в первую часть оплаты</li>
+                    <li>Упомянуть, что в случае форс-мажора вернете</li>
+                </ul>
+                
+                <h4>3. Если просит время на "подумать" (1-3 дня)</h4>
+                <ul>
+                    <li>Попробовать взять бронь</li>
+                    <li>Если отказ - назначить КОНКРЕТНЫЙ дедлайн</li>
+                    <li>Взять инициативу: "Я вам завтра в 18:00 напишу"</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="canvas-area" id="stage8">
+            <span class="phase-label">ЭТАП 8</span>
+            <div class="heading-stripe">
+                <h2>ЗАКРЫТИЕ СДЕЛКИ</h2>
+            </div>
+
+            <div class="details-panel">
+                <h3>После согласия клиента</h3>
+                
+                <h4>1. Не затягивать - назвать реквизиты</h4>
+                <ul>
+                    <li>Спросить удобный способ (номер карты/телефона)</li>
+                    <li>Продиктовать/написать в чат</li>
+                    <li>Попросить скинуть чек</li>
+                </ul>
+
+                <h4>2. Обозначить следующие шаги ЧЕТКО</h4>
+            </div>
+
+            <div class="demo-snippet">
+                <strong>Пример:</strong>
+                <p>"После того, как переведете:</p>
+                <p>1. Скиньте мне чек</p>
+                <p>2. Я создам рабочий чат в течение часа</p>
+                <p>3. Продублирую туда все договоренности</p>
+                <p>4. Завтра до 10:00 подготовлю вопросы по брифу</p>
+                <p>5. [Дата/время] созвонимся для брифа / Ответите в удобном формате"</p>
+            </div>
+
+            <div class="details-panel">
+                <h4>3. Договор</h4>
+                <ul>
+                    <li>Упомянуть про договор</li>
+                    <li>Сказать, что он типовой</li>
+                    <li>Обозначить сроки подготовки (сегодня/завтра)</li>
+                </ul>
+            </div>
+
+            <h3 style="color: #ff8c42; margin: 30px 0 15px 0; font-size: clamp(1.2em, 3vw, 1.5em);">После внесения предоплаты</h3>
+            <div class="action-list">
+                <div class="action-entry">
+                    <input type="checkbox" id="payment1">
+                    <label for="payment1">Поблагодарить</label>
+                </div>
+                <div class="action-entry">
+                    <input type="checkbox" id="payment2">
+                    <label for="payment2">Создать рабочий чат</label>
+                </div>
+                <div class="action-entry">
+                    <input type="checkbox" id="payment3">
+                    <label for="payment3">Продублировать все договоренности текстом</label>
+                </div>
+                <div class="action-entry">
+                    <input type="checkbox" id="payment4">
+                    <label for="payment4">Начать подготовку к работе</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="canvas-area" id="rules">
+            <div class="heading-stripe">
+                <h2>ВАЖНЫЕ ПРАВИЛА</h2>
+                <p style="margin-top: 10px; color: #666; font-size: clamp(0.95em, 2.5vw, 1.05em);">Все созвоны</p>
+            </div>
+
+            <div class="guidelines-section">
+                <h3>Коммуникация</h3>
+                
+                <div class="guideline-piece">
+                    <div class="guideline-heading"><span class="digit-icon">1</span> Не использовать "МЫ" слишком часто</div>
+                    <div class="guideline-text">
+                        <p><strong>Плохо:</strong> "Нам так удобно", "Мы так не делаем"</p>
+                        <p><strong>Хорошо:</strong> "Обычно с клиентами работаем так", "Могу предложить"</p>
+                    </div>
+                </div>
+
+                <div class="guideline-piece">
+                    <div class="guideline-heading"><span class="digit-icon">2</span> Не обесценивать себя</div>
+                    <div class="guideline-text">
+                        <p>Не говорить: "Строго не судите, старое КП"</p>
+                        <p>Не говорить: "Если что-то не так, поправьте"</p>
+                    </div>
+                </div>
+
+                <div class="guideline-piece">
+                    <div class="guideline-heading"><span class="digit-icon">3</span> Держать уверенный тон</div>
+                    <div class="guideline-text">
+                        <ul>
+                            <li>Особенно на этапе стоимости</li>
+                            <li>Называть цены как цены на хлеб - спокойно</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="guideline-piece">
+                    <div class="guideline-heading"><span class="digit-icon">4</span> После каждого ответа клиента - комментировать</div>
+                    <div class="guideline-text">
+                        <p>Не делать допрос</p>
+                        <p>Вести живой диалог</p>
+                    </div>
+                </div>
+
+                <div class="guideline-piece">
+                    <div class="guideline-heading"><span class="digit-icon">5</span> Про скидки</div>
+                    <div class="guideline-text">
+                        <ul>
+                            <li>НЕ давать скидку просто так</li>
+                            <li>Скидка = уступка на уступку</li>
+                            <li>Лучше без скидок, если созвон прошел хорошо</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="guidelines-section">
+                <h3>Структура</h3>
+                
+                <div class="guideline-piece">
+                    <div class="guideline-heading"><span class="digit-icon">6</span> Готовить структуру максимально аккуратно</div>
+                    <div class="guideline-text">
+                        <ul>
+                            <li>Единый шрифт заголовков</li>
+                            <li>Единое выравнивание</li>
+                            <li>Единые отступы</li>
+                            <li>Можно добавить цвета бренда клиента</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="guideline-piece">
+                    <div class="guideline-heading"><span class="digit-icon">7</span> КП должно отражать ваш продукт</div>
+                    <div class="guideline-text">
+                        <p>Если КП плохое - не показывать</p>
+                        <p>Лучше через структуру провести</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="guidelines-section">
+                <h3>Психология</h3>
+                
+                <div class="guideline-piece">
+                    <div class="guideline-heading"><span class="digit-icon">8</span> Перехват инициативы</div>
+                    <div class="guideline-text">
+                        <p>Если клиент перебивает и задает много вопросов:</p>
+                        <p>"Супер вопрос! Буквально через 3 минуты расскажу про это"</p>
+                    </div>
+                </div>
+
+                <div class="guideline-piece">
+                    <div class="guideline-heading"><span class="digit-icon">9</span> Не торопиться</div>
+                    <div class="guideline-text">
+                        <ul>
+                            <li>Особенно на стоимости</li>
+                            <li>Делать паузы</li>
+                            <li>Давать клиенту время подумать</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="guideline-piece">
+                    <div class="guideline-heading"><span class="digit-icon">10</span> Быть гибким</div>
+                    <div class="guideline-text">
+                        <ul>
+                            <li>Если клиент согласен - НЕ продолжать продавать</li>
+                            <li>Если клиент хочет что-то добавить - слушать</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="canvas-area">
+            <div class="heading-stripe">
+                <h2>ПОСЛЕ СОЗВОНА</h2>
+            </div>
+
+            <h3 style="color: #ff8c42; margin: 25px 0 15px 0; font-size: clamp(1.2em, 3vw, 1.5em);">Анализ (ОБЯЗАТЕЛЬНО)</h3>
+            <div class="action-list">
+                <div class="action-entry">
+                    <input type="checkbox" id="analysis1">
+                    <label for="analysis1">Пересмотреть запись</label>
+                </div>
+                <div class="action-entry">
+                    <input type="checkbox" id="analysis2">
+                    <label for="analysis2">Выписать: что сделал хорошо</label>
+                </div>
+                <div class="action-entry">
+                    <input type="checkbox" id="analysis3">
+                    <label for="analysis3">Выписать: что нужно улучшить</label>
+                </div>
+                <div class="action-entry">
+                    <input type="checkbox" id="analysis4">
+                    <label for="analysis4">Записать фразы, которые сработали</label>
+                </div>
+                <div class="action-entry">
+                    <input type="checkbox" id="analysis5">
+                    <label for="analysis5">Обновить скрипты/шаблоны</label>
+                </div>
+            </div>
+
+            <h3 style="color: #ff8c42; margin: 30px 0 15px 0; font-size: clamp(1.2em, 3vw, 1.5em);">Если не было продажи</h3>
+            <div class="action-list">
+                <div class="action-entry">
+                    <input type="checkbox" id="nosale1">
+                    <label for="nosale1">Проанализировать момент, где "сломалось"</label>
+                </div>
+                <div class="action-entry">
+                    <input type="checkbox" id="nosale2">
+                    <label for="nosale2">НЕ винить себя</label>
+                </div>
+                <div class="action-entry">
+                    <input type="checkbox" id="nosale3">
+                    <label for="nosale3">Первые 10 созвонов - тренировочные</label>
+                </div>
+            </div>
+
+            <h3 style="color: #ff8c42; margin: 30px 0 15px 0; font-size: clamp(1.2em, 3vw, 1.5em);">Работа с контактом</h3>
+            <div class="action-list">
+                <div class="action-entry">
+                    <input type="checkbox" id="contact4">
+                    <label for="contact4">Выполнить обещанное в срок</label>
+                </div>
+                <div class="action-entry">
+                    <input type="checkbox" id="contact5">
+                    <label for="contact5">Держать регулярную коммуникацию</label>
+                </div>
+                <div class="action-entry">
+                    <input type="checkbox" id="contact6">
+                    <label for="contact6">Если брали бронь - напомнить через 3-5 дней</label>
+                </div>
+            </div>
+
+            <div class="mistakes-box" style="margin-top: 40px;">
+                <h3>ЧАСТЫЕ ОШИБКИ</h3>
+                <div class="mistake-point">Не представиться или представиться размыто</div>
+                <div class="mistake-point">Сразу переходить к структуре без вопросов</div>
+                <div class="mistake-point">Углубляться в референсы и начинать обсуждение</div>
+                <div class="mistake-point">Использовать профессиональный сленг (УТП, конверсии)</div>
+                <div class="mistake-point">Делать допрос вместо диалога</div>
+                <div class="mistake-point">Слить этап стоимости</div>
+                <div class="mistake-point">Давать скидку без причины</div>
+                <div class="mistake-point">Не брать бронь/предоплату</div>
+                <div class="mistake-point">Не обозначать четкие следующие шаги</div>
+                <div class="mistake-point">Говорить "если что-то не так, поправьте"</div>
+            </div>
+
+            <div class="heading-stripe" style="margin-top: 50px;">
+                <h2>MINDSET</h2>
+            </div>
+
+            <div class="wisdom-card">
+                <p>"Я иду не продать сайт, а дать максимум пользы человеку и понять, смогу ли я ему помочь"</p>
+            </div>
+
+            <div class="wisdom-card">
+                <p>"Первые 10 созвонов - тренировочные. Я учусь, набиваю руку. Деньги придут как следствие"</p>
+            </div>
+
+            <div class="wisdom-card">
+                <p>"Я продаю не часы работы, а результат для бизнеса клиента"</p>
+            </div>
+
+            <div class="wisdom-card">
+                <p>"Сайт должен окупиться через 7-10 клиентов. Это инвестиция, а не расход"</p>
+            </div>
+        </div>
+
+        <div class="end-banner">
+            <div class="author-info">
+                <div>Больше, чем Таплинк</div>
+                <div>Влад Ивкин</div>
+            </div>
+        </div>
+    </div>
+  </div>
   <!-- Telegram SDK (опционально) -->
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
