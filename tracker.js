@@ -1,24 +1,21 @@
-// tracker.js
-
-const TRACKER_API_URL = "https://broken-meadow-47c5.ivlievd156.workers.dev/tracker"; // Используем тот же домен что в main.js
+const TRACKER_API_URL = "https://broken-meadow-47c5.ivlievd156.workers.dev/tracker";
 
 let trackerState = {
     isAdmin: false,
-    queues: [],
+    queues: ['Общая'], // Дефолтное значение
     tasks: [],
     myId: null
 };
 
-// Инициализация модуля Трекера
 async function initTracker() {
     const loader = document.getElementById('tracker-loader');
     const content = document.getElementById('tracker-content');
     
     if(loader) loader.style.display = 'block';
-    
+    if(content) content.innerHTML = ''; // Очистка старого контента
+
     try {
         const tg = window.Telegram.WebApp;
-        // Отправляем запрос на /init
         const res = await fetch(`${TRACKER_API_URL}/init`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -26,138 +23,67 @@ async function initTracker() {
         });
 
         const data = await res.json();
+        console.log("Tracker Data Received:", data); // Для отладки в консоли
+
         if (data.ok) {
             trackerState.isAdmin = data.isAdmin;
-            trackerState.queues = data.queues || ['Общая'];
+            trackerState.queues = (data.queues && data.queues.length > 0) ? data.queues : ['Общая'];
             trackerState.tasks = data.tasks || [];
             trackerState.myId = data.myId;
-            
             renderTrackerUI();
+        } else {
+            content.innerHTML = `<p style="color:red; padding:20px;">Ошибка доступа: ${data.error || 'неизвестно'}</p>`;
         }
     } catch (e) {
         console.error("Tracker Load Error:", e);
+        content.innerHTML = `<p style="color:red; padding:20px;">Ошибка сети. Проверьте консоль.</p>`;
     } finally {
         if(loader) loader.style.display = 'none';
-        if(content) content.style.display = 'block';
     }
 }
+
 function renderTrackerUI() {
     const container = document.getElementById('tracker-content');
     if (!container) return;
 
-    // 1. Controls (Admin only buttons)
-    let controlsHtml = `
+    let html = `
         <div class="tracker-controls">
             <div class="tracker-filter">
-                <select id="filter-queue" onchange="filterTasks()">
+                <select id="filter-queue" onchange="filterTasks()" class="tracker-input">
                     <option value="all">Все очереди</option>
                     ${trackerState.queues.map(q => `<option value="${q}">${q}</option>`).join('')}
                 </select>
-                <select id="filter-status" onchange="filterTasks()">
-                    <option value="all">Все статусы</option>
-                    <option value="open">Открыто</option>
-                    <option value="in_progress">В работе</option>
-                    <option value="review">Проверка</option>
-                    <option value="done">Готово</option>
-                </select>
             </div>
+            ${trackerState.isAdmin ? `
+            <div class="admin-actions" style="display:flex; gap:10px; margin-top:10px;">
+                <button class="btn-tracker-action" onclick="openTaskModal()" style="flex:1;">+ Задача</button>
+                <button class="btn-tracker-secondary" onclick="createQueue()">+ Проект</button>
+            </div>` : ''}
+        </div>
+        <div class="tracker-list" id="tracker-list-container">
+            ${generateTaskListHTML(trackerState.tasks)}
+        </div>
     `;
-
-    if (trackerState.isAdmin) {
-        controlsHtml += `
-            <div class="admin-actions">
-                <button class="btn-tracker-action" onclick="openTaskModal()">+ Задача</button>
-                <button class="btn-tracker-secondary" onclick="createQueue()">+ Очередь</button>
-            </div>
-        `;
-    }
-    controlsHtml += `</div>`;
-
-    // 2. Task List
-    let tasksHtml = `<div class="tracker-list" id="tracker-list-container">`;
-    tasksHtml += generateTaskListHTML(trackerState.tasks);
-    tasksHtml += `</div>`;
-
-    container.innerHTML = controlsHtml + tasksHtml;
+    container.innerHTML = html;
 }
 
 function generateTaskListHTML(tasks) {
-    if (tasks.length === 0) return '<div class="empty-state">Нет задач</div>';
+    if (!tasks || tasks.length === 0) return '<div style="text-align:center; padding:20px; color:gray;">Задач пока нет</div>';
 
-    // Сортировка: Сначала открытые, потом дедлайн
-    const statusOrder = { 'open': 1, 'in_progress': 2, 'review': 3, 'done': 4 };
-    
-    const sorted = [...tasks].sort((a,b) => {
-        if (statusOrder[a.status] !== statusOrder[b.status]) {
-            return statusOrder[a.status] - statusOrder[b.status];
-        }
-        return new Date(a.deadline) - new Date(b.deadline);
-    });
-
-    return sorted.map(t => {
-        const isExpired = new Date(t.deadline) < new Date() && t.status !== 'done';
-        const statusLabels = {
-            'open': 'Открыто',
-            'in_progress': 'В работе',
-            'review': 'Проверка',
-            'done': 'Готово'
-        };
-        const statusColors = {
-            'open': 'var(--info)',
-            'in_progress': 'var(--warning)',
-            'review': 'var(--accent)',
-            'done': 'var(--success)'
-        };
-
-        return `
+    return tasks.map(t => `
         <div class="tracker-card" onclick="editTask('${t.id}')">
             <div class="tracker-card-header">
                 <span class="queue-badge">${t.queue}</span>
-                <span class="status-badge" style="background:${statusColors[t.status]}">${statusLabels[t.status]}</span>
+                <span class="status-badge" style="background:var(--accent)">${t.status}</span>
             </div>
             <div class="tracker-card-title">${t.title}</div>
-            <div class="tracker-card-desc">${t.desc || ''}</div>
             <div class="tracker-card-footer">
-                <span class="assignee-id">👤 ${t.assigneeId}</span>
-                <span class="deadline-date ${isExpired ? 'expired' : ''}">📅 ${new Date(t.deadline).toLocaleDateString()}</span>
+                <span>👤 ${t.assigneeId || '---'}</span>
+                <span>📅 ${t.deadline || '---'}</span>
             </div>
         </div>
-        `;
-    }).join('');
+    `).join('');
 }
-
-function filterTasks() {
-    const q = document.getElementById('filter-queue').value;
-    const s = document.getElementById('filter-status').value;
-
-    const filtered = trackerState.tasks.filter(t => {
-        return (q === 'all' || t.queue === q) && (s === 'all' || t.status === s);
-    });
-
-    document.getElementById('tracker-list-container').innerHTML = generateTaskListHTML(filtered);
-}
-
-// --- Actions ---
-
-async function createQueue() {
-    const name = prompt("Название новой очереди (проекта):");
-    if (!name) return;
-
-    try {
-        const tg = window.Telegram.WebApp;
-        const res = await fetch(`${TRACKER_API_URL}/queue/create`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ initData: tg.initData, name })
-        });
-        if ((await res.json()).ok) {
-            trackerState.queues.push(name);
-            renderTrackerUI();
-        }
-    } catch(e) { alert("Ошибка"); }
-}
-
-let currentEditingTask = null;
 
 function openTaskModal(taskId = null) {
     const modal = document.getElementById('tracker-modal');
