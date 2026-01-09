@@ -15,10 +15,10 @@ async function initTracker() {
     const content = document.getElementById('tracker-content');
     
     if(loader) loader.style.display = 'block';
-    if(content) content.style.display = 'none';
-
+    
     try {
         const tg = window.Telegram.WebApp;
+        // Отправляем запрос на /init
         const res = await fetch(`${TRACKER_API_URL}/init`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -28,23 +28,19 @@ async function initTracker() {
         const data = await res.json();
         if (data.ok) {
             trackerState.isAdmin = data.isAdmin;
-            trackerState.queues = data.queues;
-            trackerState.tasks = data.tasks;
+            trackerState.queues = data.queues || ['Общая'];
+            trackerState.tasks = data.tasks || [];
             trackerState.myId = data.myId;
             
             renderTrackerUI();
-        } else {
-            alert("Ошибка загрузки трекера");
         }
     } catch (e) {
-        console.error(e);
-        alert("Ошибка сети");
+        console.error("Tracker Load Error:", e);
     } finally {
         if(loader) loader.style.display = 'none';
         if(content) content.style.display = 'block';
     }
 }
-
 function renderTrackerUI() {
     const container = document.getElementById('tracker-content');
     if (!container) return;
@@ -223,6 +219,7 @@ async function saveTask() {
     };
 
     try {
+        // ПУТЬ ДОЛЖЕН БЫТЬ ТАКИМ ЖЕ КАК В WORKER ( /task/save )
         const res = await fetch(`${TRACKER_API_URL}/task/save`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -232,11 +229,13 @@ async function saveTask() {
         const data = await res.json();
         if(data.ok) {
             closeTrackerModal();
-            initTracker(); // Reload
+            initTracker(); // Перезагружаем список
         } else {
-            alert("Ошибка сохранения: " + (data.error || ""));
+            alert("Ошибка: " + data.error);
         }
-    } catch(e) { alert("Ошибка сети"); }
+    } catch(e) { 
+        alert("Ошибка сети при сохранении"); 
+    }
 }
 
 async function deleteTask() {
