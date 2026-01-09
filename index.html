@@ -2644,6 +2644,65 @@
         </div>
     </div>
   </div>
+
+
+  <!-- ======================== -->
+  <!-- NEW TRACKER MODULE       -->
+  <!-- ======================== -->
+  <div id="tracker" class="module">
+      <button class="back-icon" onclick="closeModule()">
+          <svg viewBox="0 0 24 24" width="24" height="24"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="module-topbar">
+          <span class="module-topbar-title">Yandex Tracker Clone</span>
+      </div>
+      <div class="hero" style="background: linear-gradient(135deg, #FFCC00, #FF9900);">
+          <h1 class="hero-title" style="color:black;">Tracker</h1>
+      </div>
+
+      <div id="tracker-loader" class="spinner" style="margin: 50px auto;"></div>
+      <div id="tracker-content"></div>
+  </div>
+
+  <!-- Tracker Modal -->
+  <div id="tracker-modal" class="tracker-modal-overlay">
+      <div class="tracker-modal-content">
+          <h3>Задача</h3>
+          <label>Заголовок</label>
+          <input type="text" id="t-title" class="tracker-input">
+          
+          <label>Описание</label>
+          <textarea id="t-desc" class="tracker-input" rows="3"></textarea>
+          
+          <div class="tracker-row">
+              <div>
+                  <label>Очередь</label>
+                  <select id="t-queue" class="tracker-input"></select>
+              </div>
+              <div>
+                  <label>Статус</label>
+                  <select id="t-status" class="tracker-input">
+                      <option value="open">Открыто</option>
+                      <option value="in_progress">В работе</option>
+                      <option value="review">Проверка</option>
+                      <option value="done">Готово</option>
+                  </select>
+              </div>
+          </div>
+          
+          <label>Исполнитель (Telegram ID)</label>
+          <input type="text" id="t-assignee" class="tracker-input" placeholder="12345678">
+          
+          <label>Дедлайн</label>
+          <input type="date" id="t-deadline" class="tracker-input">
+          
+          <div class="tracker-modal-actions">
+              <button class="btn-tracker-save" onclick="saveTask()">Сохранить</button>
+              <button class="btn-tracker-cancel" onclick="closeTrackerModal()">Отмена</button>
+          </div>
+          <button id="btn-delete-task" class="btn-tracker-delete" onclick="deleteTask()">Удалить задачу</button>
+      </div>
+  </div>
   <!-- Telegram SDK (опционально) -->
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
