@@ -719,6 +719,236 @@ h4.bonus {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* =========================================
+   TRACKER STYLES (NEW)
+   ========================================= */
+
+.tracker-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+    background: var(--card-bg);
+    padding: 16px;
+    border-radius: 12px;
+}
+
+.tracker-filter {
+    display: flex;
+    gap: 10px;
+}
+
+.tracker-filter select {
+    flex: 1;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid var(--card-border);
+    background: var(--bg);
+    color: var(--text);
+}
+
+.admin-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.tracker-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.tracker-card {
+    background: var(--bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.tracker-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.tracker-card-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.queue-badge {
+    background: var(--card-bg);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    color: var(--secondary-text);
+    font-weight: bold;
+    border: 1px solid var(--card-border);
+}
+
+.status-badge {
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.tracker-card-title {
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.tracker-card-desc {
+    font-size: 14px;
+    color: var(--secondary-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 12px;
+}
+
+.tracker-card-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--secondary-text);
+    border-top: 1px solid var(--card-border);
+    padding-top: 8px;
+}
+
+.deadline-date.expired {
+    color: var(--danger);
+    font-weight: bold;
+}
+
+/* MODAL */
+.tracker-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.tracker-modal-overlay.active {
+    display: flex;
+}
+
+.tracker-modal-content {
+    background: var(--bg);
+    width: 90%;
+    max-width: 400px;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.tracker-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    background: var(--card-bg);
+    color: var(--text);
+    font-family: inherit;
+}
+
+.tracker-input:disabled {
+    opacity: 0.6;
+}
+
+.tracker-row {
+    display: flex;
+    gap: 10px;
+}
+.tracker-row > div { flex: 1; }
+
+.tracker-modal-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btn-tracker-action {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    flex: 1;
+}
+
+.btn-tracker-secondary {
+    background: var(--card-border);
+    color: var(--text);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+.btn-tracker-save {
+    background: var(--success);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    flex: 1;
+    font-weight: bold;
+}
+
+.btn-tracker-cancel {
+    background: var(--card-bg);
+    color: var(--text);
+    border: 1px solid var(--card-border);
+    padding: 10px;
+    border-radius: 8px;
+    flex: 1;
+}
+
+.btn-tracker-delete {
+    background: transparent;
+    color: var(--danger);
+    border: 1px solid var(--danger);
+    width: 100%;
+    padding: 8px;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+/* Rest of the original CSS follows... */
+/* Заголовок модуля */
+.module-header {
+  background: linear-gradient(135deg, #229ED9, #38BDF8);
+  color: white;
+  padding: 24px 20px;
+  border-radius: 16px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 12px rgba(34, 158, 217, 0.2);
+}
+
+:root[data-theme='dark'] .module-header {
+  background: linear-gradient(135deg, #1c7ba6, #2a9dc7);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.module-header h1 {
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
 @keyframes bounce {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-6px); }
