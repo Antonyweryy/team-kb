@@ -129,18 +129,22 @@ function attachListeners() {
       const id = a.dataset.module;
       if (!id) return;
       
-      modules.forEach(m => m.classList.remove('active'));
+      // Скрываем все модули
+      modules.forEach(m => {
+        m.classList.remove('active');
+        m.style.display = 'none'; // Добавляем принудительное скрытие
+      });
+
       const modal = document.getElementById(id);
       if (!modal) return;
 
+      modal.style.display = 'block'; // Показываем нужный
       modal.classList.add('active');
       document.body.classList.add('no-scroll');
 
-      // ДОБАВЛЕНО: Если открываем трекер — запускаем его инициализацию
+      // Инициализация трекера
       if (id === 'tracker') {
-        if (typeof initTracker === 'function') {
-          initTracker();
-        }
+        initTracker(); 
       }
     });
   });
