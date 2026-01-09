@@ -128,12 +128,20 @@ function attachListeners() {
       e.preventDefault();
       const id = a.dataset.module;
       if (!id) return;
+      
       modules.forEach(m => m.classList.remove('active'));
       const modal = document.getElementById(id);
       if (!modal) return;
-      modal.style.removeProperty('display');
+
       modal.classList.add('active');
       document.body.classList.add('no-scroll');
+
+      // ДОБАВЛЕНО: Если открываем трекер — запускаем его инициализацию
+      if (id === 'tracker') {
+        if (typeof initTracker === 'function') {
+          initTracker();
+        }
+      }
     });
   });
 
